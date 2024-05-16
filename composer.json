@@ -1,0 +1,23 @@
+{
+    "name": "baezeta/superadmin",
+    "description": "Superadmin DashBoard",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Baezeta\\Admin\\": "src/"
+        },
+        "files": [
+            "src/functions.php"
+        ]
+    },
+    "extra": {
+        "laravel":{
+            "providers": [
+                "Baezeta\\Admin\\PackageServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {}
+}

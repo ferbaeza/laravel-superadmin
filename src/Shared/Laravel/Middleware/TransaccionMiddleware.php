@@ -1,0 +1,30 @@
+<?php
+
+namespace Baezeta\Admin\Shared\Laravel\Middleware;
+
+use Exception;
+use Error;
+use Throwable;
+use Illuminate\Support\Facades\DB;
+
+class TransaccionMiddleware
+{
+    public function process($command, $handler)
+    {
+        try {
+            DB::beginTransaction();
+            $result =  $handler->run($command);
+            DB::commit();
+            return $result;
+        } catch (Exception $err) {
+            DB::rollBack();
+            throw $err;
+        } catch (Error $err) {
+            DB::rollBack();
+            throw $err;
+        } catch (Throwable $err) {
+            DB::rollBack();
+            throw $err;
+        }
+    }
+}
