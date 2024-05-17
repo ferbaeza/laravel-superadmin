@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 class DashboardRoutes 
 {
-    public static string $prefix = 'api/dashboard';
+    public static string $prefix = '/dashboard';
 
     public static function configure(): void
     {

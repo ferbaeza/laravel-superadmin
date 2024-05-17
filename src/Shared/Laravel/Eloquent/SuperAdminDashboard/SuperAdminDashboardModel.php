@@ -14,14 +14,13 @@ class SuperAdminDashboardModel extends Model
 
     protected $table = 'superadmin_dashboard';
 
-    // protected $fillable = [
-    //     'nombre',
-    //     'descripcion',
-    //     'fk_tipo_id',
-    //     'fk_rol_sistema_id',
-    //     'duracion',
-    //     'agendable',
-    // ];
+    protected $fillable = [
+        'nombre',
+        'email',
+        'password',
+        'remember_token',
+        'last_activity',
+    ];
 
     protected static function newFactory()
     {

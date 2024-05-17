@@ -19,11 +19,10 @@ extends Factory
     {
         return [
             'nombre' => $this->faker->name,
-            'descripcion' => $this->faker->text,
-            'ruta' => $this->faker->url,
-            'icono' => $this->faker->word,
-            'orden' => $this->faker->randomDigit,
-            'estado' => $this->faker->randomElement(['activo', 'inactivo']),
+            'email' => $this->faker->email,
+            'password' => $this->faker->password,
+            'remember_token' => $this->faker->word,
+            'last_activity' => $this->faker->date('Y-m-d'),
         ];
     }
 }

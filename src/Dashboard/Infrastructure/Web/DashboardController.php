@@ -2,21 +2,17 @@
 
 namespace Baezeta\Admin\Dashboard\Infrastructure\Web;
 
-use App\Http\Controllers\Controller;
+use Baezeta\Admin\Shared\Bus\BusFacade;
 use Baezeta\Admin\Shared\Utils\ApiResponse;
-use Baezeta\Admin\Dashboard\Application\DashboardQueryHandler;
+use Baezeta\Admin\Dashboard\Application\DashboardQuery;
+use Baezeta\Admin\Shared\Laravel\Controller\BaseController;
 
-class DashboardController extends Controller
+class DashboardController extends BaseController
 {
-    public function __construct(
-        protected DashboardQueryHandler $handler,
-    )
-        {
-    }
     public function index()
     {
-        $data = $this->handler->run();
-        return ApiResponse::json('Dashboard', $data);
+        $response = BusFacade::process(new DashboardQuery());
+        return ApiResponse::success('Dashboard', $response);
     }
 
 }

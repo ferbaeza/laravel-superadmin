@@ -16,9 +16,13 @@ class ApiResponse
     public const CONFLICT = 409;
     public const INTERNAL_SERVER_ERROR = 500;
 
-    public static function success(string $message, array|string $data = [], int $status = null): JsonResponse
+    public static function success(string $message, mixed $data = [], int $status = null): JsonResponse
     {
-        $data = is_array($data) ? $data : [$data];
+        $data = match (true) {
+            is_array($data) || is_string($data) => $data,
+            is_object($data) => $data->jsonSerialize(),
+        };
+
         return response()->json([
             'message' => $message,
             'data' => $data

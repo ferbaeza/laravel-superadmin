@@ -1,6 +1,6 @@
 <?php
 
-
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Str;
 
 
@@ -26,5 +26,26 @@ if (!function_exists('isValidPassword')) {
     function isValidPassword($value)
     {
         return Str::length($value) >= 3;
+    }
+}
+
+if (!function_exists('cryptPass')) {
+    function cryptPass($password)
+    {
+        return Crypt::encrypt($password);
+    }
+}
+
+if (!function_exists('decryptPass')) {
+    function decryptPass($passwordCrypted)
+    {
+        return Crypt::decrypt($passwordCrypted);
+    }
+}
+
+if (!function_exists('columns')) {
+    function columns($class)
+    {
+        return (new $class)->getFillable();
     }
 }

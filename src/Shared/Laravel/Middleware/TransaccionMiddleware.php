@@ -13,7 +13,7 @@ class TransaccionMiddleware
     {
         try {
             DB::beginTransaction();
-            $result =  $handler->run($command);
+            $result =  $handler->handle($command);
             DB::commit();
             return $result;
         } catch (Exception $err) {

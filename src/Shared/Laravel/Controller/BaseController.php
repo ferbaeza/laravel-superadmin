@@ -3,19 +3,13 @@
 namespace Baezeta\Admin\Shared\Laravel\Controller;
 
 use App\Http\Controllers\Controller;
-use Baezeta\Admin\Shared\Laravel\Middleware\TransaccionMiddleware;
 
 class BaseController extends Controller
 {
-    public function __construct(
-        protected TransaccionMiddleware $middleware,
-    )
-    {
-    }
+    public readonly string $inicio;
 
-    public static function exec($command, $handler)
+    function __invoke()
     {
-        $self = new self(new TransaccionMiddleware());
-        return $self->middleware->process($command, $handler);
+        return today();
     }
 }
