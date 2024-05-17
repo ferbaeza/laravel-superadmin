@@ -1,0 +1,13 @@
+@import '../../styles/variables.scss';
+@import '../../styles/index.scss';
+
+
+.login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: $main;
+    color: $main-color;
+    
+}

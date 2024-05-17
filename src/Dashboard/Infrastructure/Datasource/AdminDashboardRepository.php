@@ -36,11 +36,13 @@ class AdminDashboardRepository implements AdminDashBoardRepositoryInterface
             );
 
             collect(Schema::getColumns($table))->map(function ($nombreColumna) use (&$columnasCollection){
+
+
                 $columnasCollection->push(new ColumnaEntity(
                     name: $nombreColumna['name'],
                     typeName: $nombreColumna['type_name'],
                     type: $nombreColumna['type'],
-                    nullable:$nombreColumna['nullable']
+                    nullable:$nombreColumna['nullable'] ==1 ? true : false,
                 ));
             });
             $tablasColllection->push($tablaEntidad);

@@ -10,7 +10,7 @@ class ColumnaEntity implements JsonSerializable
         public readonly string $name,
         public readonly string $typeName,
         public readonly string $type,
-        public readonly ?string $nullable,
+        public readonly bool $nullable,
     )
     {
     }
