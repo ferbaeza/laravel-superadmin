@@ -1,19 +1,19 @@
 <?php
 
-namespace Baezeta\Admin\Shared\Laravel\Eloquent\SuperAdminDashboard;
+namespace Baezeta\Admin\Shared\Laravel\Eloquent\SuperAdminUsuarios;
 
 
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Baezeta\Admin\Shared\Laravel\Eloquent\SuperAdminDashboard\SuperAdminDashboardModel;
+use Baezeta\Admin\Shared\Laravel\Eloquent\SuperAdminUsuarios\SuperAdminUsuariosModel;
 
-class SuperAdminDashboardFactory
+class SuperAdminMenuFactory
 
 extends Factory
 {
     use WithFaker;
 
-    protected $model = SuperAdminDashboardModel::class;
+    protected $model = SuperAdminUsuariosModel::class;
 
     public function definition()
     {

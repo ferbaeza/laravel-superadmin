@@ -1,6 +1,6 @@
 <?php
 
-namespace Baezeta\Admin\Dashboard\Domain\Entity;
+namespace Baezeta\Admin\Dashboard\Domain\Aggregates\Entity;
 
 use JsonSerializable;
 

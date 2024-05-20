@@ -2,8 +2,10 @@
 
 namespace Baezeta\Admin\Dashboard\Infrastructure\Bindings;
 
-use Baezeta\Admin\Dashboard\Infrastructure\Datasource\AdminDashboardRepository;
-use Baezeta\Admin\Dashboard\Domain\Interfaces\AdminDashBoardRepositoryInterface;
+use Baezeta\Admin\Dashboard\Infrastructure\Datasource\TablasDashboardRepository;
+use Baezeta\Admin\Dashboard\Domain\Interfaces\TablasDashboardRepositoryInterface;
+use Baezeta\Admin\Dashboard\Infrastructure\Datasource\UsuariosDashboardRepository;
+use Baezeta\Admin\Dashboard\Domain\Interfaces\UsuariosDashboardRepositoryInterface;
 
 
 
@@ -12,7 +14,8 @@ class DashboardBindings
     public static function register(): array
     {
         return [
-            AdminDashBoardRepositoryInterface::class => AdminDashboardRepository::class,
+            TablasDashboardRepositoryInterface::class => TablasDashboardRepository::class,
+            UsuariosDashboardRepositoryInterface::class => UsuariosDashboardRepository::class,
         ];
     }
 }

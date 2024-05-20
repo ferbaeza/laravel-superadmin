@@ -21,6 +21,7 @@ class PackageServiceProvider extends ServiceProvider
         $this->registerBindings();
         $this->registerCommands();
         $this->registerMiddleware();
+        $this->registerConfig();
     }
     /**
      * Registrar los bindings de la aplicación
@@ -55,6 +56,19 @@ class PackageServiceProvider extends ServiceProvider
         $this->app['router']->aliasMiddleware('superadmin.dashboard', SuperAdminMiddleware::class);
         $this->app['router']->aliasMiddleware('transaccion', TransaccionMiddleware::class);
     }
+
+    /**
+     * Register package configuration.
+     */
+    protected function registerConfig(): void
+    {
+        $this->publishes([
+            __DIR__ . '/../config/package.php' => $this->app->configPath('package.php'),
+        ], 'package-config');
+
+        $this->mergeConfigFrom(__DIR__ . '/../config/package.php', 'package');
+    }
+
     /**
      * Bootstrap services.
      *
@@ -62,7 +76,6 @@ class PackageServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
         $this->registerServices();
 
         /** Registrar Routes */
@@ -74,6 +87,6 @@ class PackageServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
 
 
-        $this->mergeConfigFrom(__DIR__ . '/../config/package.php', 'package');
     }
+    
 }

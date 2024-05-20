@@ -49,3 +49,10 @@ if (!function_exists('columns')) {
         return (new $class)->getFillable();
     }
 }
+
+if (!function_exists('random10')) {
+    function random10()
+    {
+        return Str::random(10);
+    }
+}

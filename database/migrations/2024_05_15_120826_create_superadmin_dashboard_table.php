@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('superadmin_dashboard', function (Blueprint $table) {
+        Schema::create('superadmin_usuarios', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('nombre')->nullable();
 
@@ -22,6 +22,15 @@ return new class extends Migration
             $table->date('last_activity')->nullable();
 
             $table->timestampsTz();
+        });
+
+        Schema::create('superadmin_menu', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->string('nombre');
+            $table->string('url')->nullable();
+            $table->string('codigo');
+            $table->string('codigo_padre')->nullable();
+
         });
     }
 
