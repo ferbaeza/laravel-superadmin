@@ -7,7 +7,7 @@ use Baezeta\Admin\Dashboard\Infrastructure\Bindings\DashboardBindings;
 
 trait PackageTrait
 {
-    protected function testSingletons(): array
+    protected function obtenerBindingsPackage(): array
     {
         return PackageBindings::registrarBindings();
     }

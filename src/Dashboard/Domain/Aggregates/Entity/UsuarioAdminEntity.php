@@ -9,6 +9,7 @@ class UsuarioAdminEntity implements JsonSerializable
     public function __construct(
         public readonly string $id,
         public readonly string $name,
+        public readonly string $email,
     )
     {
     }
@@ -18,6 +19,7 @@ class UsuarioAdminEntity implements JsonSerializable
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'email' => $this->email,
         ];
     }
 }

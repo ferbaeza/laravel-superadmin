@@ -19,6 +19,7 @@ class DashboardQueryHandler
     {
         $tablas = $this->tablasRepository->getCollection();
         $usuarios = $this->usuariosRepository->getCollection();
+        // dd($usuarios, count($usuarios), $usuarios->count());
 
         $info = InfoDashboardEntity::fromCommand($tablas->count(), $tablas, $usuarios->count(), $usuarios);
         return $info;

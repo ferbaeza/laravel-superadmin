@@ -5,7 +5,7 @@ namespace Baezeta\Admin\Shared\Laravel\Eloquent\SuperAdminUsuarios;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Baezeta\Admin\Shared\Laravel\Eloquent\SuperAdminUsuarios\SuperAdminMenuFactory;
+use Baezeta\Admin\Shared\Laravel\Eloquent\SuperAdminUsuarios\SuperAdminUsuariosFactory;
 
 class SuperAdminUsuariosModel extends Model
 {
@@ -24,6 +24,6 @@ class SuperAdminUsuariosModel extends Model
 
     protected static function newFactory()
     {
-        return SuperAdminMenuFactory::new();
+        return SuperAdminUsuariosFactory::new();
     }
 }

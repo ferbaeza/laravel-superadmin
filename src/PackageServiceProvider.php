@@ -27,7 +27,7 @@ class PackageServiceProvider extends ServiceProvider
      */
     protected function registerBindings()
     {
-        foreach ($this->testSingletons() as $key => $value) {
+        foreach ($this->obtenerBindingsPackage() as $key => $value) {
             is_numeric($key)
             ? $this->app->singleton($value)
             : $this->app->singleton($key, $value);
