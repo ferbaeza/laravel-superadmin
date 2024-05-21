@@ -1,18 +1,18 @@
 <?php
 
-namespace Baezeta\Admin\Shared\Laravel\Eloquent\SuperAdminDashboard;
+namespace Baezeta\Admin\Shared\Laravel\Eloquent\SuperAdminUsuarios;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Baezeta\Admin\Shared\Laravel\Eloquent\SuperAdminDashboard\SuperAdminDashboardFactory;
+use Baezeta\Admin\Shared\Laravel\Eloquent\SuperAdminUsuarios\SuperAdminMenuFactory;
 
-class SuperAdminDashboardModel extends Model
+class SuperAdminUsuariosModel extends Model
 {
     use HasFactory;
     use HasUuids;
 
-    protected $table = 'superadmin_dashboard';
+    protected $table = 'superadmin_usuarios';
 
     protected $fillable = [
         'nombre',
@@ -24,9 +24,6 @@ class SuperAdminDashboardModel extends Model
 
     protected static function newFactory()
     {
-        return SuperAdminDashboardFactory::new();
+        return SuperAdminMenuFactory::new();
     }
-
-
 }
-

@@ -12,7 +12,7 @@ class AdminUsuariosRoutes
     {
         Route::prefix(self::$prefix)
             ->group(function () {
-                Route::get('/login', [AdminUsuariosController::class, 'login'])->name('login');
+                Route::post('/login', [AdminUsuariosController::class, 'login'])->name('login');
             // Route::post('/login', [AdminUsuariosController::class, 'login'])->name('login');
             });
     }

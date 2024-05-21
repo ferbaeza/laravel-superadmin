@@ -11,6 +11,7 @@ class LoginCommandHandler
 
     public function run(LoginCommand $loginCommand)
     {
-        return 'Hello From Login Handler';
+        $mss = 'Hello From Login Handler';
+        return ['mss' => $mss, 'data' => $loginCommand];
     }
 }

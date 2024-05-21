@@ -5,7 +5,7 @@ namespace Baezeta\Admin\Shared\Laravel\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Baezeta\Admin\Shared\Laravel\Eloquent\SuperAdminDashboard\SuperAdminDashboardModel;
+use Baezeta\Admin\Shared\Laravel\Eloquent\SuperAdminUsuarios\SuperAdminUsuariosModel;
 
 class SuperAdminMiddleware
 {
@@ -16,7 +16,7 @@ class SuperAdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $isEmpty = SuperAdminDashboardModel::all()->count();
+        $isEmpty = SuperAdminUsuariosModel::all()->count();
 
         if (!config('package.activado')) {
             abort(403, 'Super Admin no está activado');

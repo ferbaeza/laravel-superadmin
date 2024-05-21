@@ -4,16 +4,15 @@ namespace Baezeta\Admin\Dashboard\Infrastructure\Datasource;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-use Baezeta\Admin\Dashboard\Domain\Entity\TablaEntity;
-use Baezeta\Admin\Dashboard\Domain\Entity\ColumnaEntity;
-use Baezeta\Admin\Dashboard\Domain\Collection\TablasCollection;
-use Baezeta\Admin\Dashboard\Domain\Collection\ColumnasCollection;
-use Baezeta\Admin\Dashboard\Domain\Interfaces\AdminDashBoardRepositoryInterface;
-use Baezeta\Admin\Shared\Laravel\Eloquent\SuperAdminDashboard\SuperAdminDashboardModel;
+use Baezeta\Admin\Dashboard\Domain\Aggregates\Entity\TablaEntity;
+use Baezeta\Admin\Dashboard\Domain\Aggregates\Entity\ColumnaEntity;
+use Baezeta\Admin\Dashboard\Domain\Aggregates\Collection\TablasCollection;
+use Baezeta\Admin\Dashboard\Domain\Aggregates\Collection\ColumnasCollection;
+use Baezeta\Admin\Dashboard\Domain\Interfaces\TablasDashboardRepositoryInterface;
 
-class AdminDashboardRepository implements AdminDashBoardRepositoryInterface
+class TablasDashboardRepository implements TablasDashboardRepositoryInterface
 {
-    public function getCollection()
+    public function getCollection(): TablasCollection
     {
         $tablesSQL = DB::select("
             SELECT table_name
@@ -28,19 +27,21 @@ class AdminDashboardRepository implements AdminDashBoardRepositoryInterface
 
         $tablasColllection = new TablasCollection();
 
-        $tablasDDBB->each(function ($table) use (&$tablasColllection){
+        $tablasDDBB->each(function ($table) use (&$tablasColllection) {
             $columnasCollection = new ColumnasCollection();
             $tablaEntidad = new TablaEntity(
                 table: $table,
                 columnas: $columnasCollection
             );
 
-            collect(Schema::getColumns($table))->map(function ($nombreColumna) use (&$columnasCollection){
+            collect(Schema::getColumns($table))->map(function ($nombreColumna) use (&$columnasCollection) {
+
+
                 $columnasCollection->push(new ColumnaEntity(
                     name: $nombreColumna['name'],
                     typeName: $nombreColumna['type_name'],
                     type: $nombreColumna['type'],
-                    nullable:$nombreColumna['nullable']
+                    nullable: $nombreColumna['nullable'] == 1 ? true : false,
                 ));
             });
             $tablasColllection->push($tablaEntidad);

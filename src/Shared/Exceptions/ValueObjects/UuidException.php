@@ -1,6 +1,6 @@
 <?php
 
-namespace Baezeta\Admin\Shared\Exceptions;
+namespace Baezeta\Admin\Shared\Exceptions\ValueObjects;
 
 use Baezeta\Admin\Shared\Exceptions\PackageBaseException;
 

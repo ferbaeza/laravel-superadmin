@@ -1,9 +1,9 @@
 <?php
 
-namespace Baezeta\Admin\Dashboard\Domain\Entity;
+namespace Baezeta\Admin\Dashboard\Domain\Aggregates\Entity;
 
-use Baezeta\Admin\Dashboard\Domain\Collection\ColumnasCollection;
 use JsonSerializable;
+use Baezeta\Admin\Dashboard\Domain\Aggregates\Collection\ColumnasCollection;
 
 class TablaEntity implements JsonSerializable
 {
@@ -19,6 +19,7 @@ class TablaEntity implements JsonSerializable
     {
         return [
             'table' => $this->table,
+            'totalColumnas' => $this->columnas->count(), 
             'columnas' => $this->columnas
         ];
     }
