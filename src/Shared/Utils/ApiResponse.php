@@ -16,17 +16,27 @@ class ApiResponse
     public const CONFLICT = 409;
     public const INTERNAL_SERVER_ERROR = 500;
 
-    public static function success(string $message, mixed $data = [], int $status = null): JsonResponse
-    {
-        $data = match (true) {
-            is_array($data) || is_string($data) => $data,
-            is_object($data) => $data->jsonSerialize(),
-        };
 
-        return response()->json([
-            'message' => $message,
-            'data' => $data
-        ], $status ?? self::OK);
+    /**
+     * Metodo para retornar una respuesta json estandarizada
+     *
+     * @param mixed $content
+     * @param array $errors
+     * @param integer $status
+     * @return JsonResponse
+     */
+    public static function success(string $message, mixed $data = [], int $status = self::OK, array $errores = []): JsonResponse
+    {
+        // $data = match (true) {
+        //     is_array($data) || is_string($data) => $data,
+        //     is_object($data) => $data->jsonSerialize(),
+        // };
+        $response = [
+            'data' => $data,
+            'errors' => $errores,
+            'status' => $status,
+        ];
+        return response()->json($response, $status);
     }
 
 

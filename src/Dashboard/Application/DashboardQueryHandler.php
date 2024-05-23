@@ -11,8 +11,7 @@ class DashboardQueryHandler
     public function __construct(
         protected TablasDashboardRepositoryInterface $tablasRepository,
         protected UsuariosDashboardRepositoryInterface $usuariosRepository
-    )
-        {
+    ) {
     }
 
     public function run(DashboardQuery $query)

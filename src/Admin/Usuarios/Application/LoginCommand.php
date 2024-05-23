@@ -6,9 +6,8 @@ class LoginCommand
 {
     public function __construct(
         public readonly string $email,
-        public readonly string $paswword
-    )
-        {
+        public readonly string $password
+    ) {
     }
 
 }

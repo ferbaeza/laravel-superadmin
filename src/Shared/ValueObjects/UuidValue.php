@@ -10,8 +10,7 @@ class UuidValue implements Value
 {
     public function __construct(
         public readonly string $uuid
-    )
-        {
+    ) {
         if (!str($uuid)->isUuid()) {
             throw UuidException::porUuid($uuid);
         }

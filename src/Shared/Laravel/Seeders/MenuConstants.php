@@ -2,7 +2,6 @@
 
 namespace Baezeta\Admin\Shared\Laravel\Seeders;
 
-
 class MenuConstants
 {
     public static function getMenu()
@@ -27,4 +26,3 @@ class MenuConstants
     public const CONFIG = ['nombre' => 'Config','url' => null,'codigo' => '002', 'codigo_padre' => null];
     public const CONFIG_USUARIO = ['nombre' => 'Menu', 'url' => null, 'codigo' => '201', 'codigo_padre' => '002'];
 }
-

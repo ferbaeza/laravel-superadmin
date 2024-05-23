@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Str;
 
-
 if (!function_exists('isUuid')) {
     function isUuid($value)
     {
@@ -46,7 +45,7 @@ if (!function_exists('decryptPass')) {
 if (!function_exists('columns')) {
     function columns($class)
     {
-        return (new $class)->getFillable();
+        return (new $class())->getFillable();
     }
 }
 

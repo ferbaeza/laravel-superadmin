@@ -7,16 +7,15 @@ use Baezeta\Admin\Shared\Laravel\Web\WebController;
 use Baezeta\Admin\Dashboard\Infrastructure\Web\DashboardRoutes;
 use Baezeta\Admin\Admin\Usuarios\Infrastructure\Web\AdminUsuariosRoutes;
 
-abstract class PackageRoutes 
+abstract class SuperAdminRoutes
 {
     public static string $prefix = 'admin';
 }
 
 
-Route::prefix(PackageRoutes::$prefix)
+Route::prefix(SuperAdminRoutes::$prefix)
     ->group(function () {
         Route::get('/', [WebController::class, 'show'])->middleware(['web', 'superadmin.dashboard']);
         AdminUsuariosRoutes::configure();
         DashboardRoutes::configure();
-});
-
+    });

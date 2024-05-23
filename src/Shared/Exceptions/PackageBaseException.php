@@ -14,6 +14,13 @@ abstract class PackageBaseException extends RuntimeException
         return new static(static::$messages[static::class]);
     }
 
+    public static function throw(): static
+    {
+        /** @phpstan-ignore-next-line */
+        throw new static(static::$messages[static::class]);
+    }
+
+
     public static function drop(mixed $mensaje = '')
     {
         $message = static::$messages[static::class];

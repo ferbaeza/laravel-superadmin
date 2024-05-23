@@ -4,5 +4,5 @@ namespace Baezeta\Admin\Shared\ValueObjects;
 
 interface Value
 {
-    public function value():mixed ;
+    public function value(): mixed ;
 }

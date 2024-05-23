@@ -18,7 +18,7 @@ class TransaccionMiddleware
             return $result;
         } catch (Exception $err) {
             DB::rollBack();
-            throw $err;
+            throw  $err;
         } catch (Error $err) {
             DB::rollBack();
             throw $err;

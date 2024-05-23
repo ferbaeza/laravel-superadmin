@@ -10,8 +10,7 @@ class Bus
 
     public function __construct(
         ...$middlewares
-    )
-    {
+    ) {
         $this->middlewares = $middlewares;
     }
 
@@ -22,7 +21,7 @@ class Bus
         $result = $this->execute($query, $middleware);
         return $result;
     }
-    
+
     public function execute($query, $middleware)
     {
         if ($middleware) {

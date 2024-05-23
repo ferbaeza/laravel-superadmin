@@ -13,9 +13,7 @@ class SuperAdminUser
         protected readonly string $email,
         protected readonly string $password,
         protected readonly string $lastActivity,
-
-    )
-        {
+    ) {
     }
 
     public static function fromCommand($command): self

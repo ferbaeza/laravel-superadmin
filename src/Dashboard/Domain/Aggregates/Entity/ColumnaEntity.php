@@ -11,8 +11,7 @@ class ColumnaEntity implements JsonSerializable
         public readonly string $typeName,
         public readonly string $type,
         public readonly bool $nullable,
-    )
-    {
+    ) {
     }
 
     public function jsonSerialize(): mixed

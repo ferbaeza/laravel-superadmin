@@ -2,14 +2,11 @@
 
 namespace Baezeta\Admin\Shared\Laravel\Eloquent\SuperAdminUsuarios;
 
-
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Baezeta\Admin\Shared\Laravel\Eloquent\SuperAdminUsuarios\SuperAdminUsuariosModel;
 
-class SuperAdminUsuariosFactory
-
-extends Factory
+class SuperAdminUsuariosFactory extends Factory
 {
     use WithFaker;
 

@@ -8,7 +8,7 @@ class BaseController extends Controller
 {
     public readonly string $inicio;
 
-    function __invoke()
+    public function __invoke()
     {
         return today();
     }

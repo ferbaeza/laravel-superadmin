@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Baezeta\Admin\Shared\Laravel\Requests;
-
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -13,7 +11,7 @@ class BaseRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**

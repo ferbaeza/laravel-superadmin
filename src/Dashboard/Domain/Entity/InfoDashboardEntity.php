@@ -13,18 +13,15 @@ class InfoDashboardEntity implements JsonSerializable
         public TablasCollection $tablas,
         public readonly int $cantidadUsuarios,
         public UsuariosAdminCollection $usuarios,
-    )
-        {
+    ) {
     }
 
     public static function fromCommand(
-        int $numeroTablas, 
+        int $numeroTablas,
         TablasCollection $tablas,
         int $cantidadUsuarios,
         UsuariosAdminCollection $usuarios
-        
-        ): InfoDashboardEntity
-    {
+    ): InfoDashboardEntity {
         return new self(
             cantidadTablas :$numeroTablas,
             tablas :$tablas,

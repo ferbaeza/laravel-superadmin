@@ -8,8 +8,7 @@ class VerificarSuperAdminUsuarioCommandHandler
 {
     public function __construct(
         protected SuperAdminDashboardRepositoryInterface $repository
-    )
-        {
+    ) {
     }
 
     public function run(VerificarSuperAdminUsuarioCommand $command)

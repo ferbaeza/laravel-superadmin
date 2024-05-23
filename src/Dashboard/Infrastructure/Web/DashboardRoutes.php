@@ -4,7 +4,7 @@ namespace Baezeta\Admin\Dashboard\Infrastructure\Web;
 
 use Illuminate\Support\Facades\Route;
 
-class DashboardRoutes 
+class DashboardRoutes
 {
     public static string $prefix = '/dashboard';
 

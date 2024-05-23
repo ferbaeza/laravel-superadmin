@@ -37,24 +37,24 @@ class SuperAdminCommand extends Command
         $email = $this->components->ask('Introduce your email?', $this->emailAllowed);
         // $this->components->confirm('Confirma con el email introducido : '.$email , true);
         // $this->output->horizontalTable(['email'], [[$email]]);
-        
+
         // $this->output->writeln('Introduce y confirma tu contraseña');
 
         $password = $this->components->secret(' Introduce tu Password:');
         // $passConfirmation = $this->secret('Confirm tu Password:');
-        
+
         // if ($password !== $passConfirmation) {
-            //     $errorMessage = 'The passwords do not match';
-            //     $this->output->error($errorMessage);
-            //     return Command::FAILURE;
-            // }
-            
+        //     $errorMessage = 'The passwords do not match';
+        //     $this->output->error($errorMessage);
+        //     return Command::FAILURE;
+        // }
+
         // $this->output->progressStart(100);
         $this->line('');
         $this->components->confirm('Estas seguro de crear un usuario super admin?', true);
         $this->line('');
 
-        if(!$this->verificarEmail($email)){
+        if(!$this->verificarEmail($email)) {
             $this->output->error('El email introducido no es valido');
             return Command::FAILURE;
         }
@@ -64,7 +64,7 @@ class SuperAdminCommand extends Command
             return Command::FAILURE;
         }
 
-        if($this->registrarUsuario($email, $password)){
+        if($this->registrarUsuario($email, $password)) {
             $this->components->task('El email ' . $email . ' introducido es correcto.');
             $finalMessage = 'El Usuario SuperAdmin ' . $email . ' has been created successfully';
             // $this->output->progressFinish();
@@ -72,7 +72,7 @@ class SuperAdminCommand extends Command
             return Command::SUCCESS;
         }
         return Command::FAILURE;
-        
+
     }
 
     private function registrarUsuario(string $email, string $password)
@@ -92,7 +92,7 @@ class SuperAdminCommand extends Command
     {
         return isValidEmail($email);
     }
-    
+
     private function verificarPassword(string $password)
     {
         return isValidPassword($password);

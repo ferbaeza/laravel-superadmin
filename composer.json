@@ -11,6 +11,11 @@
             "src/functions.php"
         ]
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Baezeta\\Test\\": "tests/"
+        }
+    },
     "extra": {
         "laravel":{
             "providers": [
@@ -18,5 +23,17 @@
             ]
         }
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "stable",
+    "require-dev": {
+        "symfony/var-dumper": "^7.0",
+        "friendsofphp/php-cs-fixer": "^3.57"
+    },
+    "scripts": {
+        "auto": "composer dump-autoload -o",
+        "load": "composer dump-autoload -o",
+        "tests": "phpunit --color=always --testdox tests/",
+        "stan": "vendor/bin/phpstan analyse src --level 5",
+        "fixer": "php ./vendor/bin/php-cs-fixer fix src/ --diff",
+        "fixer-test": "php ./vendor/bin/php-cs-fixer fix tests/ --diff"
+    }
 }

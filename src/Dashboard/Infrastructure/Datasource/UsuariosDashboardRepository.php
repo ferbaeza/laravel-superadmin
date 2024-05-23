@@ -14,7 +14,7 @@ class UsuariosDashboardRepository implements UsuariosDashboardRepositoryInterfac
         $usuarios = SuperAdminUsuariosModel::all();
         $coleccion = new UsuariosAdminCollection();
 
-        $usuarios->each(function($usuario) use(&$coleccion){
+        $usuarios->each(function ($usuario) use (&$coleccion) {
             $coleccion->push(new UsuarioAdminEntity($usuario->id, $usuario->nombre, $usuario->email));
         });
 

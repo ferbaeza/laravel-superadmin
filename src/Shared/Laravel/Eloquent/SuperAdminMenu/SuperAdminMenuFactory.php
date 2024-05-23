@@ -2,14 +2,11 @@
 
 namespace Baezeta\Admin\Shared\Laravel\Eloquent\SuperAdminMenu;
 
-
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Baezeta\Admin\Shared\Laravel\Eloquent\SuperAdminMenu\SuperAdminMenuModel;
 
-class SuperAdminMenuFactory
-
-extends Factory
+class SuperAdminMenuFactory extends Factory
 {
     use WithFaker;
 

@@ -6,8 +6,7 @@ class VerificarSuperAdminUsuarioCommand
 {
     public function __construct(
         public readonly string $email,
-    )
-        {
+    ) {
     }
 
 }

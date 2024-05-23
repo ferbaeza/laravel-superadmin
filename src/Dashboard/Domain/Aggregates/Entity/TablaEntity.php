@@ -10,16 +10,15 @@ class TablaEntity implements JsonSerializable
     public function __construct(
         public readonly string $table,
         public readonly ColumnasCollection $columnas,
-    )
-        {
-    
+    ) {
+
     }
 
     public function jsonSerialize(): mixed
     {
         return [
             'table' => $this->table,
-            'totalColumnas' => $this->columnas->count(), 
+            'totalColumnas' => $this->columnas->count(),
             'columnas' => $this->columnas
         ];
     }

@@ -77,7 +77,7 @@ class PackageServiceProvider extends ServiceProvider
         $this->registerServices();
 
         /** Registrar Routes */
-        $this->loadRoutesFrom(__DIR__. '/Shared/Laravel/Web/PackageRoutes.php');
+        $this->loadRoutesFrom(__DIR__. '/Shared/Laravel/Web/SuperAdminRoutes.php');
         /** Registrar Views */
         /** Primer argumento es el directorio donde se encuentra la vista, el segundo argumento el nombre del paquete */
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'plantilla');
@@ -86,5 +86,5 @@ class PackageServiceProvider extends ServiceProvider
 
 
     }
-    
+
 }

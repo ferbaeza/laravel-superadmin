@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.2/phpunit.xsd" bootstrap="vendor/autoload.php" cacheDirectory="tests/.phpunit.cache" executionOrder="depends,defects" beStrictAboutCoverageMetadata="true" beStrictAboutOutputDuringTests="true" failOnRisky="true" failOnWarning="true" colors="true" stopOnFailure="false" stopOnError="false" stopOnWarning="false" stopOnIncomplete="false" stopOnRisky="false" stopOnSkipped="false">
+  <testsuites>
+    <testsuite name="Test">
+      <directory suffix="Test.php">./tests</directory>
+    </testsuite>
+    <testsuite name="Admin">
+        <directory suffix="Test.php">./tests/Src/Admin</directory>
+    </testsuite>
+  </testsuites>
+  <source restrictNotices="true" restrictWarnings="true" ignoreIndirectDeprecations="true">
+    <include>
+      <directory>src</directory>
+    </include>
+  </source>
+</phpunit>

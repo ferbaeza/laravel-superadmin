@@ -51,7 +51,7 @@ class HtmlUtils
     public static function css()
     {
         $css  = (self::getAssetPaths())['css'];
-        if (($app = @file_get_contents(__DIR__.'/../../../public/'. $css )) === false) {
+        if (($app = @file_get_contents(__DIR__.'/../../../public/'. $css)) === false) {
             throw new RuntimeException('Unable to load the dashboard CSS.');
         }
 

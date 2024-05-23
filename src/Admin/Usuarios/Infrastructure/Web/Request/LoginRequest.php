@@ -6,15 +6,10 @@ use Baezeta\Admin\Shared\Laravel\Requests\BaseRequest;
 
 class LoginRequest extends BaseRequest
 {
-    public function authorize(): bool
-    {
-        return true;
-    }
-
     public function rules(): array
     {
         return [
-            'email' => 'required|email',
+            'email' => 'required',
             'password' => 'required'
         ];
     }
