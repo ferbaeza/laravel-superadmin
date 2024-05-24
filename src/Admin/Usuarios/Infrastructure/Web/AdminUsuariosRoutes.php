@@ -3,6 +3,7 @@
 namespace Baezeta\Admin\Admin\Usuarios\Infrastructure\Web;
 
 use Illuminate\Support\Facades\Route;
+use Baezeta\Admin\Admin\Usuarios\Infrastructure\Web\AdminUsuariosController;
 
 class AdminUsuariosRoutes
 {
@@ -14,7 +15,6 @@ class AdminUsuariosRoutes
             ->group(function () {
                 Route::post('/crear-super-admin', [AdminUsuariosController::class, 'crearSuperAdmin'])->name('superAdmin');
                 Route::post('/login', [AdminUsuariosController::class, 'login'])->name('login');
-                // Route::post('/login', [AdminUsuariosController::class, 'login'])->name('login');
             });
     }
 }

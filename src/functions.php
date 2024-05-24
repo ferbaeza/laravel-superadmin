@@ -1,12 +1,34 @@
 <?php
 
-use Illuminate\Support\Facades\Crypt;
+use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Crypt;
 
-if (!function_exists('isUuid')) {
-    function isUuid($value)
+if (!function_exists('isStrUuid')) {
+    function isStrUuid($value)
     {
         return Str::isUuid($value);
+    }
+}
+
+if (!function_exists('uuid4')) {
+    function uuid4()
+    {
+        return Uuid::uuid4()->toString();
+    }
+}
+
+if (!function_exists('uuid7')) {
+    function uuid7()
+    {
+        return Uuid::uuid7();
+    }
+}
+
+if (!function_exists('isUuid')) {
+    function isUuid($uuid)
+    {
+        return Uuid::isValid($uuid);
     }
 }
 

@@ -23,9 +23,7 @@ class RegistrarSuperAdminUsuarioCommandHandler
             throw UsuarioYaExisteException::drop($command->email);
         }
         $user = SuperAdminUser::fromCommand($command);
-        // DB::beginTransaction();
         $this->repository->save($user);
-        // DB::commit();
         return $user;
     }
 

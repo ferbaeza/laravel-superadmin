@@ -3,6 +3,7 @@
 namespace Baezeta\Admin\Shared\Laravel\Console;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Baezeta\Admin\Shared\Exceptions\ValueObjects\EmailInvalidoException;
 use Baezeta\Admin\Admin\Usuarios\Application\RegistrarSuperAdminUsuarioCommand;
@@ -78,8 +79,14 @@ class SuperAdminCommand extends Command
     private function registrarUsuario(string $email, string $password)
     {
         try {
-            $command = new RegistrarSuperAdminUsuarioCommand($email, $password);
-            return app()->make(RegistrarSuperAdminUsuarioCommandHandler::class)->run($command);
+            DB::beginTransaction();
+            list($nombre) = explode('@', $email);
+            $command = new RegistrarSuperAdminUsuarioCommand($nombre, $email, $password);
+            $usuarioNuevo =  app()->make(RegistrarSuperAdminUsuarioCommandHandler::class)->run($command);
+
+            DB::commit();
+            return $usuarioNuevo;
+
         } catch (\Throwable $th) {
             $this->output->error($th->getMessage());
             return false;

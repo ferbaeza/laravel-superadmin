@@ -1,6 +1,6 @@
 <?php
 
-namespace Baezeta\Admin\Shared\Laravel\Middleware;
+namespace Baezeta\Admin\Shared\Bus\Middleware;
 
 use Exception;
 use Error;

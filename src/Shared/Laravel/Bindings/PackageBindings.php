@@ -2,8 +2,9 @@
 
 namespace Baezeta\Admin\Shared\Laravel\Bindings;
 
-use Baezeta\Admin\Dashboard\Infrastructure\Bindings\DashboardBindings;
-use Baezeta\Admin\Admin\Usuarios\Infrastructure\Bindings\SuperAdminDashboardBindings;
+use Baezeta\Admin\Admin\Shared\Bindings\AdminBindings;
+use Baezeta\Admin\Dashboard\Shared\Bindings\DashboardBindings;
+
 
 class PackageBindings
 {
@@ -11,7 +12,7 @@ class PackageBindings
     {
         return array_merge(
             DashboardBindings::register(),
-            SuperAdminDashboardBindings::register(),
+            AdminBindings::register()
         );
     }
 }

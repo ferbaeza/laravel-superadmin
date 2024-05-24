@@ -2,6 +2,8 @@
 
 namespace Baezeta\Admin\Dashboard\Infrastructure\Bindings;
 
+use Baezeta\Admin\Dashboard\Infrastructure\Datasource\MenuDashboardRepository;
+use Baezeta\Admin\Dashboard\Domain\Interfaces\MenuDashboardRepositoryInterface;
 use Baezeta\Admin\Dashboard\Infrastructure\Datasource\TablasDashboardRepository;
 use Baezeta\Admin\Dashboard\Domain\Interfaces\TablasDashboardRepositoryInterface;
 use Baezeta\Admin\Dashboard\Infrastructure\Datasource\UsuariosDashboardRepository;
@@ -14,6 +16,7 @@ class DashboardBindings
         return [
             TablasDashboardRepositoryInterface::class => TablasDashboardRepository::class,
             UsuariosDashboardRepositoryInterface::class => UsuariosDashboardRepository::class,
+            MenuDashboardRepositoryInterface::class => MenuDashboardRepository::class,
         ];
     }
 }

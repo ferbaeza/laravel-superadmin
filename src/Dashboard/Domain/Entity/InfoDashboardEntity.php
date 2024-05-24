@@ -4,6 +4,7 @@ namespace Baezeta\Admin\Dashboard\Domain\Entity;
 
 use JsonSerializable;
 use Baezeta\Admin\Dashboard\Domain\Aggregates\Collection\TablasCollection;
+use Baezeta\Admin\Dashboard\Domain\Aggregates\Collection\MenuDashboardCollection;
 use Baezeta\Admin\Dashboard\Domain\Aggregates\Collection\UsuariosAdminCollection;
 
 class InfoDashboardEntity implements JsonSerializable
@@ -13,20 +14,24 @@ class InfoDashboardEntity implements JsonSerializable
         public TablasCollection $tablas,
         public readonly int $cantidadUsuarios,
         public UsuariosAdminCollection $usuarios,
+        public readonly int $cantidadMenu,
+        public MenuDashboardCollection $menu,
     ) {
     }
 
     public static function fromCommand(
-        int $numeroTablas,
         TablasCollection $tablas,
-        int $cantidadUsuarios,
-        UsuariosAdminCollection $usuarios
+        UsuariosAdminCollection $usuarios,
+        MenuDashboardCollection $menu
+
     ): InfoDashboardEntity {
         return new self(
-            cantidadTablas :$numeroTablas,
+            cantidadTablas :$tablas->count(),
             tablas :$tablas,
-            cantidadUsuarios :$cantidadUsuarios,
-            usuarios : $usuarios
+            cantidadUsuarios :$usuarios->count(),
+            usuarios : $usuarios,
+            cantidadMenu : $menu->count(),
+            menu : $menu
         );
     }
 
@@ -36,7 +41,9 @@ class InfoDashboardEntity implements JsonSerializable
             'cantidadTablas' => $this->cantidadTablas,
             'tablas' => $this->tablas,
             'cantidadUsuarios' => $this->cantidadUsuarios,
-            'usuarios' => $this->usuarios
+            'usuarios' => $this->usuarios,
+            'cantidadMenu' => $this->cantidadMenu,
+            'menu' => $this->menu,
         ];
     }
 

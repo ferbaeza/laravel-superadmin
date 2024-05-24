@@ -1,6 +1,6 @@
 <?php
 
-namespace Baezeta\Admin\Shared\Bus;
+namespace Baezeta\Admin\Shared\Bus\Infrastructure;
 
 use Illuminate\Container\Container;
 

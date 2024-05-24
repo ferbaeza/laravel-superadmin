@@ -1,9 +1,9 @@
 <?php
 
-namespace Baezeta\Admin\Shared\Bus;
+namespace Baezeta\Admin\Shared\Bus\Domain;
 
-use Baezeta\Admin\Shared\Bus\BusHandler;
-use Baezeta\Admin\Shared\Laravel\Middleware\TransaccionMiddleware;
+use Baezeta\Admin\Shared\Bus\Infrastructure\BusHandler;
+use Baezeta\Admin\Shared\Bus\Middleware\TransaccionMiddleware;
 
 class BusFacade
 {

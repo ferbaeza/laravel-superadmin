@@ -8,4 +8,5 @@ interface SuperAdminDashboardRepositoryInterface
 {
     public function getEntity(string $email): bool;
     public function save(SuperAdminUser $user): void;
+    public function loginEmail(string $email, string $password, bool $recordar = false):bool ;
 }

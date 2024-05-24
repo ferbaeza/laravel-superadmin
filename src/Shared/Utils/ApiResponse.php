@@ -32,6 +32,7 @@ class ApiResponse
         //     is_object($data) => $data->jsonSerialize(),
         // };
         $response = [
+            'message' => $message,
             'data' => $data,
             'errors' => $errores,
             'status' => $status,

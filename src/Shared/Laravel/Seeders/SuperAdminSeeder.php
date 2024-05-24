@@ -14,7 +14,7 @@ class SuperAdminSeeder extends Seeder
      */
     public function run(): void
     {
-        $dataUsuariosAdmin = ['nombre' => 'Fer Baeza','email' => 'baezeta@gmail.com', 'password' => '1008'];
+        $dataUsuariosAdmin = ['nombre' => 'Fer Baeza','email' => 'baezeta@gmail.com', 'password' => cryptPass('1008')];
         SuperAdminUsuariosModel::factory($dataUsuariosAdmin)->create();
 
         foreach (MenuConstants::getMenu() as $value) {
