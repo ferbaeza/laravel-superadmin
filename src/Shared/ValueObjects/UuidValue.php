@@ -4,7 +4,7 @@ namespace Baezeta\Admin\Shared\ValueObjects;
 
 use Illuminate\Support\Str;
 use Baezeta\Admin\Shared\ValueObjects\Value;
-use Baezeta\Admin\Shared\Exceptions\UuidException;
+use Baezeta\Admin\Shared\Exceptions\ValueObjects\UuidException;
 
 class UuidValue implements Value
 {
@@ -12,7 +12,7 @@ class UuidValue implements Value
         public readonly string $uuid
     ) {
         if (!str($uuid)->isUuid()) {
-            throw UuidException::porUuid($uuid);
+            throw UuidException::drop($uuid);
         }
     }
 

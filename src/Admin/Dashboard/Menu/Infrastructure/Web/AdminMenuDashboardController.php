@@ -17,9 +17,8 @@ class AdminMenuDashboardController extends BaseController
      */
     public function crearMenu(AdminMenuDashboardRequest $request)
     {
-        dd(20);
         $data = $request->validated();
         $response = BusFacade::process(new CrearMenuDashboard($data['nombre'], $data['codigoPadre']));
-        return ApiResponse::success('Listar Menu Dashboard', $response);
+        return ApiResponse::success('Crear Menu Dashboard', $response);
     }
 }

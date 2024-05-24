@@ -3,7 +3,11 @@
 namespace Baezeta\Admin\Dashboard\Shared\Routes;
 
 use Illuminate\Support\Facades\Route;
-use Baezeta\Admin\Dashboard\Infrastructure\Web\DashboardController;
+use Baezeta\Admin\Dashboard\Shared\Controller\DashboardController;
+use Baezeta\Admin\Dashboard\Menu\Infrastructure\Web\MenuController;
+use Baezeta\Admin\Dashboard\Main\Infrastructure\Web\MainDashboardController;
+use Baezeta\Admin\Dashboard\Tablas\Infrastructure\Web\TablasDashboardController;
+use Baezeta\Admin\Dashboard\Usuarios\Infrastructure\Web\UsuariosDashboardController;
 
 class DashboardRoutes
 {
@@ -13,10 +17,13 @@ class DashboardRoutes
     {
         Route::prefix(self::$prefix)
             ->group(function () {
-                Route::get('', [DashboardController::class, 'index']);
-                Route::get('/usuarios', [DashboardController::class, 'listarUsuarios']);
-                Route::get('/tablas', [DashboardController::class, 'listarTablas']);
-                Route::get('/menu', [DashboardController::class, 'listarMenu']);
+                Route::get('', [MainDashboardController::class, 'index']);
+                /**Usuarios */
+                Route::get('/usuarios', [UsuariosDashboardController::class, 'listarUsuarios']);
+                /**Tablas */
+                Route::get('/tablas', [TablasDashboardController::class, 'listarTablas']);
+                /**Menu */
+                Route::get('/menu', [MenuController::class, 'listarMenu']);
             });
     }
 }

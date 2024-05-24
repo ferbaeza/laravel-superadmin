@@ -14,7 +14,6 @@ class AdminUsuariosController extends BaseController
 {
     public function login(LoginRequest $request)
     {
-        dd(17);
         $data = $request->validated();
         $command = new LoginCommand($data['email'], $data['password']);
 
