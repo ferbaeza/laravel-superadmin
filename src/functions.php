@@ -58,7 +58,7 @@ if (!function_exists('cryptPass')) {
 }
 
 if (!function_exists('decryptPass')) {
-    function decryptPass($passwordCrypted)
+    function decryptPass(string $passwordCrypted)
     {
         return Crypt::decrypt($passwordCrypted);
     }

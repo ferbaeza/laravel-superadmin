@@ -5,8 +5,8 @@ namespace Baezeta\Admin;
 use Illuminate\Support\ServiceProvider;
 use Baezeta\Admin\Shared\Traits\PackageTrait;
 use Baezeta\Admin\Shared\Laravel\Console\SuperAdminCommand;
+use Baezeta\Admin\Shared\Bus\Middleware\TransaccionMiddleware;
 use Baezeta\Admin\Shared\Laravel\Middleware\SuperAdminMiddleware;
-use Baezeta\Admin\Shared\Laravel\Middleware\TransaccionMiddleware;
 
 class PackageServiceProvider extends ServiceProvider
 {

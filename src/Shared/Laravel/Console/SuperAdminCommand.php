@@ -5,11 +5,12 @@ namespace Baezeta\Admin\Shared\Laravel\Console;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\Console\Attribute\AsCommand;
+use Baezeta\Admin\Shared\Laravel\Seeders\Base\BasePackageSeeder;
 use Baezeta\Admin\Shared\Exceptions\ValueObjects\EmailInvalidoException;
 use Baezeta\Admin\Admin\Usuarios\Application\RegistrarSuperAdminUsuarioCommand;
 use Baezeta\Admin\Admin\Usuarios\Application\RegistrarSuperAdminUsuarioCommandHandler;
 
-#[AsCommand(name: 'admin:create-super-admin')]
+#[AsCommand(name: 'zadmin:create-super-admin')]
 class SuperAdminCommand extends Command
 {
     /**
@@ -17,7 +18,7 @@ class SuperAdminCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'admin:create-super-admin';
+    protected $signature = 'zadmin:create-super-admin';
 
     /**
      * The console command description.
@@ -81,6 +82,10 @@ class SuperAdminCommand extends Command
         try {
             DB::beginTransaction();
             list($nombre) = explode('@', $email);
+
+            $this->call(BasePackageSeeder::class);
+
+
             $command = new RegistrarSuperAdminUsuarioCommand($nombre, $email, $password);
             $usuarioNuevo =  app()->make(RegistrarSuperAdminUsuarioCommandHandler::class)->run($command);
 

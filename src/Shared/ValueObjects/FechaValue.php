@@ -21,7 +21,7 @@ class FechaValue implements Value
 
     public static function create(): self
     {
-        return self::hoy();
+        return self::ahora();
     }
 
     public function value(): mixed

@@ -18,7 +18,7 @@ class SuperAdminUsuariosModel extends Model
         'nombre',
         'email',
         'password',
-        'remember_token',
+        'estado',
         'last_activity',
     ];
 

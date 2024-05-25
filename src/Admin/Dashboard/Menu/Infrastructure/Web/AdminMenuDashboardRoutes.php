@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 class AdminMenuDashboardRoutes
 {
-    public static string $prefix = '';
+    public static string $prefix = 'dashboard';
 
     public static function configure(): void
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Baezeta\Admin\Shared\Laravel\Seeders;
+namespace Baezeta\Admin\Shared\Laravel\Seeders\Constants;
 
 class MenuConstants
 {

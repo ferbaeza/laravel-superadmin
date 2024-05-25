@@ -14,12 +14,9 @@ return new class extends Migration
         Schema::create('superadmin_usuarios', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('nombre')->nullable();
-
             $table->string('email')->unique();
             $table->string('password');
-            
-            $table->string('remember_token')->nullable();
-            $table->date('last_activity')->nullable();
+            $table->integer('estado')->default(0);
 
             $table->timestampsTz();
         });
@@ -31,6 +28,28 @@ return new class extends Migration
             $table->string('codigo');
             $table->string('codigo_padre')->nullable();
 
+        });
+
+        Schema::create('superadmin_roles', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->string('nombre');
+            $table->string('codigo');
+        });
+
+        Schema::create('superadmin_permisos', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->string('nombre');
+        });
+
+        Schema::create('superadmin_roles_permisos', function (Blueprint $table) {
+            // $table->uuid('id')->primary();
+            $table->foreignUuid('id_rol')
+                ->constrained('superadmin_roles')
+                ->onDelete('restrict');
+
+            $table->foreignUuid('id_permiso')
+                ->constrained('superadmin_permisos')
+                ->onDelete('restrict');
         });
     }
 
