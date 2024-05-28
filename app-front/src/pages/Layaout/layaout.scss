@@ -1,0 +1,27 @@
+@import "../../styles/variables.scss";
+
+.layaout{
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+
+    .sidebar{
+        width: 200px;
+        height: 100vh;
+        color: $main-color;
+        background-color: $main;
+        border-right: 1px solid $soft;
+    }
+    
+    .content{
+        width: 100%;
+        border: solid 1px $soft;
+        // flex: 8;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: whitesmoke;
+        color: $dark-color;
+    }
+}
