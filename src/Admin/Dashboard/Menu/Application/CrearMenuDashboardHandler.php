@@ -11,7 +11,6 @@ class CrearMenuDashboardHandler
     public function __construct(
         protected readonly CrearMenuDashboardService $service,
         protected readonly AdminMenuDashboardRepositoryInterface $repository
-
     )
         {
     }

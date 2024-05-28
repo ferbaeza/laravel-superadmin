@@ -18,8 +18,7 @@ class SuperAdminUsuariosFactory extends Factory
             'nombre' => $this->faker->name,
             'email' => $this->faker->email,
             'password' => $this->faker->password,
-            'remember_token' => $this->faker->word,
-            'last_activity' => $this->faker->date('Y-m-d'),
+            'estado' => 0,
         ];
     }
 }

@@ -2,19 +2,17 @@
 
 namespace Baezeta\Admin\Admin\Usuarios\Domain\Entity;
 
-use Illuminate\Support\Str;
-use Baezeta\Admin\Shared\ValueObjects\UuidValue;
-use Illuminate\Support\Facades\Hash;
+use Baezeta\Admin\Shared\ValueObjects\FechaValue;
 use JsonSerializable;
+use Baezeta\Admin\Shared\ValueObjects\UuidValue;
 
 class SuperAdminUser implements JsonSerializable
 {
-    private function __construct(
+    public function __construct(
         protected readonly UuidValue $id,
         protected readonly string $nombre,
         protected readonly string $email,
         protected readonly string $password,
-        protected readonly string $lastActivity,
     ) {
     }
 
@@ -24,8 +22,7 @@ class SuperAdminUser implements JsonSerializable
             id : UuidValue::create(),
             nombre : $command->nombre,
             email : $command->email,
-            password : Hash::make($command->password),
-            lastActivity : today()
+            password : cryptPass($command->password),
         );
     }
 
@@ -35,7 +32,6 @@ class SuperAdminUser implements JsonSerializable
             'id' => $this->id->value(),
             'nombre' => $this->nombre,
             'email' => $this->email,
-            'lastActivity' => $this->lastActivity
         ];
     }
 
@@ -57,10 +53,5 @@ class SuperAdminUser implements JsonSerializable
     public function getPassword(): string
     {
         return $this->password;
-    }
-
-    public function getLastActivity(): string
-    {
-        return $this->lastActivity;
     }
 }
