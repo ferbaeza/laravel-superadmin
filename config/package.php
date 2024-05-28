@@ -2,4 +2,5 @@
 
 return [
     'activado' => true,
+    'nombre' => 'SuperAdmin',
 ];

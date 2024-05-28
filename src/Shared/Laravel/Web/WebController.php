@@ -8,8 +8,6 @@ class WebController extends Controller
 {
     public function show()
     {
-        return view('plantilla::index');
+        return view('superadmin::index');
     }
-
-
 }

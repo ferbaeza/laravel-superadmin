@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router';
 import { Dashboard } from '../../icons/dashboard';
 import { SidebarIcon } from '../../icons/sidebarIcon';
 import { UserIcon } from '../../icons/usersIcon';
@@ -5,11 +6,22 @@ import './sidebar.scss';
 
 
 function Sidebar() {
+  let navigate = useNavigate();
+
+  const handleCardClick = (name) => {
+    console.log('name', name);
+    navigate("/"+name);
+  }
+
   return (
     <div className="sidebar">
       <div className="menu-header">
-        <SidebarIcon />
-        <p>Dashboard</p>
+          <div className="list-hijo">
+            <span>
+              <SidebarIcon />
+            </span>
+            <span onClick={() => handleCardClick('refresh')}>Dashboard</span>
+          </div>
       </div>
       <div className="menu-list">
         <div className="menu-list-titulo">
@@ -18,22 +30,22 @@ function Sidebar() {
         <div className="menu-list-hijos">
           <div className="list-hijo">
             <span>
-              <Dashboard />
+              <SidebarIcon />
             </span>
-            <span>Tablas</span>
+            <span onClick={() => handleCardClick('main')}>Dashboard</span>
           </div>
           <div className="list-hijo">
             <span>
-              <SidebarIcon />
+              <Dashboard />
             </span>
-            <span>Dashboard</span>
+            <span onClick={() => handleCardClick('tablas')}>Tablas</span>
           </div>
           <div className="list-hijo">
             <span>
               <UserIcon />
             </span>
 
-            <span>Users</span>
+            <span onClick={() => handleCardClick('login')}>Users</span>
           </div>
         </div>
       </div>

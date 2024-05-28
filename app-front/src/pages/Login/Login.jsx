@@ -33,10 +33,10 @@ function Login() {
     <div className="login">
       <div className="login-form">
         <h1>SuperAdmin</h1>
-        <form onSubmit={handleSubmit}>
-          <input type="text" placeholder="Username" onChange={e => setUserEmail(e.target.value)} />
-          <input type="password" placeholder="Password" onChange={e => setUserPassword(e.target.value)} />
-          <button type="submit">Login</button>
+        <form className="login-form" onSubmit={handleSubmit}>
+          <input className="login-input" type="text" placeholder="Username" onChange={e => setUserEmail(e.target.value)} />
+          <input className="login-input" type="password" placeholder="Password" onChange={e => setUserPassword(e.target.value)} />
+          <button className="login-button" type="submit">Login</button>
         </form>
       </div>
 

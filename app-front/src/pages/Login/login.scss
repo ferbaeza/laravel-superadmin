@@ -5,9 +5,46 @@
 .login{
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
+    width: 100%;
     height: 100vh;
     background-color: $main;
     color: $main-color;
+
+    .login-form{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        
+        .login-input{
+            border-radius: 7px;
+            font-size: 2em;
+            padding: 2%;
+            margin-bottom: 10px;
+            border: solid 1px $soft;
+
+            &:hover {
+                border: 1px solid $white;
+                color: $white;
+                background-color: $soft;
+            }
+        }
+        .login-button {
+            border-radius: 7px;
+            border: solid 1px $soft;
+            font-size: 2em;
+            padding: 2%;
+            margin-bottom: 10px;
+
+            &:hover {
+                border: 1px solid $white;
+                color: $white;
+                background-color: $soft;
+            }
+        }
+    }
     
 }

@@ -7,17 +7,16 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta name="description" content="Web site created using create-react-app" />
-    <link rel="apple-touch-icon" href="{{ asset('logo192.png') }}" />
 
-    <title>{{ env('APP_NAME', 'Lara') }}</title>
+    <title>{{ config('package.nombre', 'Admin Dashboard') }}</title>
 
     {{ Baezeta\Admin\Shared\Utils\HtmlUtils::css() }}
 
 </head>
 <body>
     <div id="root">
-        {{ Baezeta\Admin\Shared\Utils\HtmlUtils::js() }}
     </div>
+    {{ Baezeta\Admin\Shared\Utils\HtmlUtils::js() }}
 </body>
 
 
