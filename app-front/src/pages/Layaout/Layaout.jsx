@@ -1,11 +1,12 @@
 import './layaout.scss';
 import '../../styles/index.scss';
-import DashboardOutlet from '../Dashboard/DashboardOutlet';
-import Sidebar from '../../components/Sidebar/Sidebar';
-import { Route, Routes } from "react-router";
-import Tablas from '../Tablas/Tablas';
 import Login from '../Login/Login';
+import Tablas from '../Tablas/Tablas';
+import Usuarios from '../Usuarios/Usuarios';
+import { Route, Routes } from "react-router";
+import Sidebar from '../../components/Sidebar/Sidebar';
 import RefreshPage from '../../components/Shared/Refresh';
+import DashboardOutlet from '../Dashboard/DashboardOutlet';
 import DashboardMainPage from '../Dashboard/DashboardMainPage';
 
 
@@ -23,8 +24,9 @@ function Layaout() {
 
               <Route path="refresh" element={<RefreshPage />} />
               <Route path="main" element={<DashboardMainPage />} />
-              <Route path="login" element={<Login />} />
+              <Route path="users" element={<Usuarios />} />
               <Route path="tablas" element={<Tablas />} />
+              <Route path="login" element={<Login />} />
             </Route>
           </Routes>
         </div>
