@@ -1,8 +1,24 @@
 @import "../../../styles/variables.scss";
 
-.users-data{
+.users{
     width: 100%;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: $gap;
+
+    .user-data{
+        width: 100%;
+        padding: 5px;
+        // background-color: $soft;
+        color: $dark-color;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        flex-direction: column;
+        gap: $gap;
+        border: $solid;
+        border-radius: 5px;
+    }
 }

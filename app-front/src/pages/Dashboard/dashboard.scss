@@ -10,23 +10,41 @@
 
         .dashboard-boxes{
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: repeat(4, 1fr);
             border: solid 1px $soft;
             padding: 1%;
-            grid-auto-rows: minmax(180px, auto);
+            grid-auto-rows: minmax(150px, auto);
             grid-auto-flow: dense;
 
+            @media (max-width: 1024px) {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            
+                @media (max-width: 768px) {
+                    grid-template-columns: repeat(1, 1fr);
+                }
+            
+                @media (max-width: 480px) {
+                    grid-template-columns: repeat(1, 1fr);
+                }
+
             .box{
-                border: solid 1px red;
+                // border: $solid;
+                
+                box-shadow: $soft 1px 3px 7px;
                 margin: 10px;
-                padding: 10px;
-                border-radius: 5px;
+                padding: 5px;
+                border-radius: 7px;
+                gap : $gap
+            }
+            .box3{
                 grid-column: span 1;
                 grid-row: span 3;
+            }
 
-                .box1{
-                    display: flex;
-                }
+            .box2 {
+                grid-column: span 1;
+                grid-row: span 3;
             }
         }
     }

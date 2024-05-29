@@ -1,24 +1,22 @@
+import React from 'react';
 import './styles/usersCharts.scss';
 
 
-function UsersCharts({usersData}) {
+function UsersCharts() {
 
-    console.log('usersData', usersData);
     return (
-        <div className="users-data">
-            {usersData.map((user)=>(
-                    <div className="user-data">
-                            <span>{user.id}</span>
-                            <span>{user.name}</span>
-                            <span>{user.email}</span>
-                    </div>
-            ))}
-            <h1>UsersCharts</h1>
+        <div className="users">
+            <h1>Count</h1>
+            <div className="users-count">
+                <div className="">
+                    <span>Total</span>
+                </div>
+                <div className="">
+                    <span>5</span>
+                </div>
+            </div>
         </div>
     );
 }
-
-
-
 export default UsersCharts;
 
