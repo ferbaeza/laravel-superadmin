@@ -1,39 +1,34 @@
-import '../../styles/index.scss';
 import './dashboard.scss';
-import axiosClient from '../../shared/http/AxiosClient';
-import UsersCharts from '../../components/Charts/UsersCharts';
+import '../../styles/index.scss';
 import { useEffect, useState } from 'react';
+import axiosClient from '../../shared/http/AxiosClient';
 import UsersList from '../../components/Charts/UsersList';
+import UsersCharts from '../../components/Charts/UsersCharts';
 
 function  DashboardMainPage() {
 
-  // const [usuarios, setUsuarios] = useState();
-  // const [totalUsuarios, setTotalUsuarios] = useState();
+  const [usuarios, setUsuarios] = useState();
+  const [totalUsuarios, setTotalUsuarios] = useState();
   
-  // const [tablas, setTablas] = useState();
-  // const [totalTablas, setTotalTablas] = useState();
+  const [tablas, setTablas] = useState();
+  const [totalTablas, setTotalTablas] = useState();
   
-  // const [menu, setMenu] = useState();
-  // const [totalMenu, setTotalMenu] = useState();
 
-  // async function fetchUsersData() {
-  //   const response = await axiosClient.get(`dashboard`, {});
-  //   const data = response.data.data;
-  //   // console.log('data', data);
+  async function fetchUsersData() {
+    const response = await axiosClient.get(`dashboard`, {});
+    const data = response.data.data;
+    console.log('data', data);
 
-  //   setUsuarios(data.usuarios.data);
-  //   setTotalUsuarios(data.cantidadUsuarios);
+    setUsuarios(data.usuarios.data);
+    setTotalUsuarios(data.cantidadUsuarios);
     
-  //   setTablas(data.tablas.data);
-  //   setTotalTablas(data.cantidadTablas);
+    setTablas(data.tablas.data);
+    setTotalTablas(data.cantidadTablas);
+  }
 
-  //   setMenu(data.menu.data);
-  //   setTotalMenu(data.cantidadMenu);
-  // }
-
-  // useEffect(() => {
-  //   fetchUsersData();
-  // }, []);
+  useEffect(() => {
+    fetchUsersData();
+  }, []);
 
 
 
@@ -45,12 +40,10 @@ function  DashboardMainPage() {
           {/* <UsersCharts usersData={usuarios} /> */}
         </div>
         <div className="box box2">
-          <UsersList />
-
+          <UsersList usersData={usuarios} />
         </div>
         <div className="box box3">
           <UsersList />
-
         </div>
         <div className="box box4">box box4</div>
         <div className="box box5">box box5</div>

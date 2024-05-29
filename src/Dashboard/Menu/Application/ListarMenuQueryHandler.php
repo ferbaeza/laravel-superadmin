@@ -14,8 +14,10 @@ class ListarMenuQueryHandler
     ) {
     }
 
-    public function run(ListarMenuQuery $query) : MenuDashboardCollection
+    public function run(ListarMenuQuery $query) 
     {
+        $col = ($this->menuRepository->getCollection());
+        // return ($col->getAddedItems());
         return $this->menuRepository->getCollection();
     }
 

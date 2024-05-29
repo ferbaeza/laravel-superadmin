@@ -3,7 +3,7 @@
 namespace Baezeta\Admin\Shared\Collection;
 
 use Illuminate\Support\Collection;
-use Baezeta\Kernel\Exceptions\Collections\CustomCollectionExceptions;
+use Baezeta\Admin\Shared\Exceptions\Shared\CustomCollectionExceptions;
 
 abstract class CustomPackageCollection
 {
