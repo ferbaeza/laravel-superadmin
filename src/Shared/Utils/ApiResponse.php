@@ -3,6 +3,7 @@
 namespace Baezeta\Admin\Shared\Utils;
 
 use Illuminate\Http\JsonResponse;
+use Illuminate\Validation\Rules\Exists;
 
 class ApiResponse
 {
@@ -31,7 +32,8 @@ class ApiResponse
         //     is_array($data) || is_string($data) => $data,
         //     is_object($data) => $data->jsonSerialize(),
         // };
-        if($data->data instanceof \Illuminate\Support\Collection){
+        // dd(isset($data->data));
+        if(isset($data->data) and $data->data instanceof \Illuminate\Support\Collection){
             $data = $data->data;
         }
         // $data = instanceof($data, 'Illuminate\Support\Collection') ? $data->toArray() : $data;

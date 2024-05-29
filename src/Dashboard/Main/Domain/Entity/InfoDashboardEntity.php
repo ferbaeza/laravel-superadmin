@@ -3,11 +3,12 @@
 namespace Baezeta\Admin\Dashboard\Main\Domain\Entity;
 
 use JsonSerializable;
+use Baezeta\Admin\Shared\Entity\EntityBase;
 use Baezeta\Admin\Dashboard\Tablas\Domain\Collection\TablasCollection;
 use Baezeta\Admin\Dashboard\Menu\Domain\Collection\MenuDashboardCollection;
 use Baezeta\Admin\Dashboard\Usuarios\Domain\Collection\UsuariosAdminCollection;
 
-class InfoDashboardEntity implements JsonSerializable
+class InfoDashboardEntity extends EntityBase implements JsonSerializable
 {
     public function __construct(
         public readonly int $cantidadTablas,

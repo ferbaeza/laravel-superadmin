@@ -29,8 +29,8 @@ function Sidebar() {
       fetchMenuData();
     }, []);
 
-    console.log('menu', menu);
-    console.log("title", title);
+    // console.log('menu', menu);
+    // console.log("title", title);
 
   return (
     <div className="sidebar">

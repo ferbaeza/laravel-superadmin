@@ -3,8 +3,8 @@
 namespace Baezeta\Admin\Admin\Shared\Routes;
 
 use Illuminate\Support\Facades\Route;
+use Baezeta\Admin\Admin\Tablas\Infrastructure\Web\AdminTablasRoutes;
 use Baezeta\Admin\Admin\Usuarios\Infrastructure\Web\AdminUsuariosRoutes;
-use Baezeta\Admin\Admin\Usuarios\Infrastructure\Web\AdminUsuariosController;
 use Baezeta\Admin\Admin\Dashboard\Menu\Infrastructure\Web\AdminMenuDashboardRoutes;
 
 
@@ -19,6 +19,7 @@ class AdminRoutes
             ->group(function () {
                 AdminUsuariosRoutes::configure();
                 AdminMenuDashboardRoutes::configure();
+                AdminTablasRoutes::configure();
             });
     }
 

@@ -17,6 +17,6 @@ class MenuController extends BaseController
     public function listarMenu()
     {
         $response = BusFacade::process(new ListarMenuQuery());
-        return ApiResponse::success('Listar Menu Dashboard', $response);
+        return ApiResponse::success('Menu Dashboard', $response);
     }
 }

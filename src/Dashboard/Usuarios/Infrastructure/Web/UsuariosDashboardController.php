@@ -17,7 +17,7 @@ class UsuariosDashboardController extends BaseController
     {
 
         $response = BusFacade::process(new ListarTodosLosUsuariosQuery());
-        return ApiResponse::success('Listar Usuarios Dashboard', $response);
+        return ApiResponse::success('Usuarios Dashboard', $response);
     }
 
 }

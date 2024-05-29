@@ -16,6 +16,6 @@ class TablasDashboardController extends BaseController
     public function listarTablas()
     {
         $response = BusFacade::process(new ListarTodosLasTablasQuery());
-        return ApiResponse::success('Listar Tablas Dashboard', $response);
+        return ApiResponse::success('Tablas Dashboard', $response);
     }
 }
