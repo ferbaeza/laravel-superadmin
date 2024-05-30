@@ -1,9 +1,11 @@
 import '../../styles/index.scss';
 import './dashboard.scss';
 import axiosClient from '../../shared/http/AxiosClient';
-import UsersCharts from '../../components/Charts/UsersCharts';
 import { useEffect, useState } from 'react';
 import UsersList from '../../components/Charts/UsersList';
+import UsersCountChart from '../../components/Charts/UsersCountChart';
+import TablasCountChart from '../../components/Charts/TablasCountChart';
+import TablasList from '../../components/Charts/TablasList';
 
 function  DashboardMainPage() {
 
@@ -41,7 +43,12 @@ function  DashboardMainPage() {
     <div className="dashboard-main">
       <div className="dashboard-boxes">
         <div className="box box1">
-          <UsersCharts />
+          <div className="subbox-1">
+            <UsersCountChart />
+          </div>
+          <div className="subbox-1">
+            <TablasCountChart />
+          </div>
           {/* <UsersCharts usersData={usuarios} /> */}
         </div>
         <div className="box box2">
@@ -49,7 +56,7 @@ function  DashboardMainPage() {
 
         </div>
         <div className="box box3">
-          <UsersList />
+          <TablasList />
 
         </div>
         <div className="box box4">box box4</div>

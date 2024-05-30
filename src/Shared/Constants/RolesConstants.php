@@ -1,6 +1,6 @@
 <?php
 
-namespace Baezeta\Admin\Shared\Laravel\Seeders\Constants;
+namespace Baezeta\Admin\Shared\Constants;
 
 class RolesConstants
 {

@@ -4,8 +4,8 @@ namespace Baezeta\Admin\Shared\Laravel\Seeders\Dashboard;
 
 use Illuminate\Database\Seeder;
 use Baezeta\Admin\Shared\Utils\StringUtils;
-use Baezeta\Admin\Shared\Laravel\Seeders\Constants\RolesConstants;
-use Baezeta\Admin\Shared\Laravel\Seeders\Constants\PermisosConstants;
+use Baezeta\Admin\Shared\Constants\RolesConstants;
+use Baezeta\Admin\Shared\Constants\PermisosConstants;
 use Baezeta\Admin\Shared\Laravel\Eloquent\RolesDashboard\RolesDashboardModel;
 use Baezeta\Admin\Shared\Laravel\Eloquent\PermisosDashboard\PermisosDashboardModel;
 

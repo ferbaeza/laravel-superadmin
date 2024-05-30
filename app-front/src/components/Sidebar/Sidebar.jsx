@@ -16,11 +16,11 @@ function Sidebar() {
   return (
     <div className="sidebar">
       <div className="menu-header">
-        <div className="list-hijo">
+        <div className="list-hijo" onClick={() => handleCardClick("/main")}>
           <span>
             <SidebarIcon />
           </span>
-          <span onClick={() => handleCardClick("/")}>Dashboard</span>
+          <span>Dashboard</span>
         </div>
       </div>
       <div className="menu-list">
@@ -28,24 +28,23 @@ function Sidebar() {
           <span className="span-list-titulo">Menu</span>
         </div>
         <div className="menu-list-hijos">
-          <div className="list-hijo">
+          <div className="list-hijo" onClick={() => handleCardClick("main")}>
             <span>
               <SidebarIcon />
             </span>
-            <span onClick={() => handleCardClick("main")}>Dashboard</span>
+            <span>Dashboard</span>
           </div>
-          <div className="list-hijo">
+          <div className="list-hijo" onClick={() => handleCardClick("tablas")}>
             <span>
               <Dashboard />
             </span>
-            <span onClick={() => handleCardClick("tablas")}>Tablas</span>
+            <span>Tablas</span>
           </div>
-          <div className="list-hijo"> 
+          <div className="list-hijo" onClick={() => handleCardClick("users")}> 
             <span>
               <UserIcon />
             </span>
-
-            <span onClick={() => handleCardClick("users")}>Usuarios</span>
+            <span>Usuarios</span>
           </div>
         </div>
       </div>

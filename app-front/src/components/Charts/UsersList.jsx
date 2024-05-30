@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles/usersCharts.scss';
+import './styles/listCharts.scss';
 
 
 function UsersList(/* {usersData =[]} */) {
