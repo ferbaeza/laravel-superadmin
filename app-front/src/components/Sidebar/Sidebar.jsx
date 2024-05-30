@@ -17,7 +17,7 @@ function Sidebar() {
   }
 
   const [title, setTitle] = useState();
-  const [menu, setMenu] = useState();
+  const [menu, setMenu] = useState([]);
 
   async function fetchMenuData() {
     const response = await axiosClient.get("dashboard/menu", {});
@@ -29,8 +29,8 @@ function Sidebar() {
       fetchMenuData();
     }, []);
 
-    // console.log('menu', menu);
-    // console.log("title", title);
+    console.log('menu', menu);
+    console.log("title", title);
 
   return (
     <div className="sidebar">
@@ -44,25 +44,25 @@ function Sidebar() {
         </div>
       </div>
 
-      {/* {menu && menu.data.map((item) => (
+      {menu.map((item) => (
         <div className="menu-list">
           <div className="menu-list-titulo">
-            <span className="span-list-titulo">{item.title}</span>
+            <span className="span-list-titulo">{item.nombre}</span>
           </div>
           <div className="menu-list-hijos">
-            {item.children.map((child) => (
+            {item.subMenus?.data.map((child) => (
               <div className="list-hijo">
                 <span>
                   <SidebarIcon />
                 </span>
                 <span onClick={() => handleCardClick(child.route)}>
-                  {child.title}
+                  {child.nombre}
                 </span>
               </div>
             ))}
           </div>
         </div>
-      ))} */}
+      ))}
 
       {/* {menu.map((item) => (
         <div className="menu-list">

@@ -3,7 +3,8 @@ import '../../styles/index.scss';
 import { useEffect, useState } from 'react';
 import axiosClient from '../../shared/http/AxiosClient';
 import UsersList from '../../components/Charts/UsersList';
-import UsersCharts from '../../components/Charts/UsersCharts';
+import UsersCountChart from '../../components/Charts/UsersCountChart';
+import TablasCountChart from '../../components/Charts/TablasCountChart';
 
 function  DashboardMainPage() {
 
@@ -53,9 +54,9 @@ function  DashboardMainPage() {
         <div className="box box4">box box4</div>
         <div className="box box5">box box5</div>
         <div className="box box6">box box6</div>
-        <div className="box box7">box box7</div>
+        {/* <div className="box box7">box box7</div>
         <div className="box box8">box box8</div>
-        <div className="box box9">box box9</div>
+        <div className="box box9">box box9</div> */}
       </div>
     </div>
   );
