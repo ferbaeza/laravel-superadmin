@@ -2,6 +2,7 @@
 
 namespace Baezeta\Admin\Admin\Shared\Bindings;
 
+use Baezeta\Admin\Admin\Tablas\Infrastructure\Bindings\AdminTablasRegisterBindings;
 use Baezeta\Admin\Admin\Usuarios\Infrastructure\Bindings\SuperAdminDashboardBindings;
 use Baezeta\Admin\Admin\Dashboard\Menu\Infrastructure\Bindings\AdminMenuDashboardRegisterBindings;
 
@@ -11,7 +12,8 @@ class AdminBindings
     {
         return array_merge(
             SuperAdminDashboardBindings::register(),
-            AdminMenuDashboardRegisterBindings::register()
+            AdminMenuDashboardRegisterBindings::register(),
+            AdminTablasRegisterBindings::register(),
         );
     }
 

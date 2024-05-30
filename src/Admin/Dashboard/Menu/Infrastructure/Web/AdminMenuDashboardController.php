@@ -10,7 +10,6 @@ use Baezeta\Admin\Admin\Dashboard\Menu\Infrastructure\Web\Request\AdminMenuDashb
 
 class AdminMenuDashboardController extends BaseController
 {
-
     /**
      * Crear Menu Dashboard
      * @return AdminMenuDashboardEntity
