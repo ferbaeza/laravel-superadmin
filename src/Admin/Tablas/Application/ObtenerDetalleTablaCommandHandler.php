@@ -2,10 +2,9 @@
 
 namespace Baezeta\Admin\Admin\Tablas\Application;
 
-use Baezeta\Admin\Admin\Tablas\Domain\Collection\TablasAdminCollection;
 use Baezeta\Admin\Admin\Tablas\Domain\Interfaces\AdminTablasRepositoryInterface;
 
-class ListarTablasCommandHandler
+class ObtenerDetalleTablaCommandHandler
 {
     public function __construct(
         protected readonly AdminTablasRepositoryInterface $repositorio
@@ -13,8 +12,10 @@ class ListarTablasCommandHandler
         {
     }
 
-    public function run(ListarTablasCommand $command): TablasAdminCollection
+    public function run(ObtenerDetalleTablaCommand $command)
     {
-        return $this->repositorio->getCollection();
+        return $this->repositorio->getEntity($command->idTabla);
+        dd($command);
     }
+
 }

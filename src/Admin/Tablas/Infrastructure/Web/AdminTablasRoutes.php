@@ -14,6 +14,7 @@ class AdminTablasRoutes
         Route::prefix(self::$prefix)
             ->group(function () {
                 Route::get('/listar-tablas', [AdminTablasController::class, 'listarTablas'])->name('listarTablas');
+                Route::get('/tabla/{id}', [AdminTablasController::class, 'listarDetalleTabla'])->name('listarDetalleTabla');
             });
     }
 

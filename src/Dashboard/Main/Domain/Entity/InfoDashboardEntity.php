@@ -4,7 +4,7 @@ namespace Baezeta\Admin\Dashboard\Main\Domain\Entity;
 
 use JsonSerializable;
 use Baezeta\Admin\Shared\Entity\EntityBase;
-use Baezeta\Admin\Dashboard\Tablas\Domain\Collection\TablasCollection;
+use Baezeta\Admin\Dashboard\Tablas\Domain\Collection\TablasDashboardCollection;
 use Baezeta\Admin\Dashboard\Menu\Domain\Collection\MenuDashboardCollection;
 use Baezeta\Admin\Dashboard\Usuarios\Domain\Collection\UsuariosAdminCollection;
 
@@ -12,7 +12,7 @@ class InfoDashboardEntity extends EntityBase implements JsonSerializable
 {
     public function __construct(
         public readonly int $cantidadTablas,
-        public TablasCollection $tablas,
+        public TablasDashboardCollection $tablas,
         public readonly int $cantidadUsuarios,
         public UsuariosAdminCollection $usuarios,
         public readonly int $cantidadMenu,
@@ -21,7 +21,7 @@ class InfoDashboardEntity extends EntityBase implements JsonSerializable
     }
 
     public static function fromCommand(
-        TablasCollection $tablas,
+        TablasDashboardCollection $tablas,
         UsuariosAdminCollection $usuarios,
         MenuDashboardCollection $menu
 

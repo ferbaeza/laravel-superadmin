@@ -28,7 +28,7 @@ class MenuDashboardRepository implements MenuDashboardRepositoryInterface
                     new MenuDashboardEntity(
                         $value['id'],
                         $value['nombre'],
-                        $value['url'],
+                        $value['route'],
                         $value['codigo'],
                         $value['codigo_padre'],
                         $this->buscarHijos($datos, $value['codigo'])
@@ -48,7 +48,7 @@ class MenuDashboardRepository implements MenuDashboardRepositoryInterface
                     new MenuDashboardEntity(
                         $value['id'],
                         $value['nombre'],
-                        $value['url'],
+                        $value['route'],
                         $value['codigo'],
                         $value['codigo_padre'],
                         $this->buscarHijos($datos, $value['codigo'])

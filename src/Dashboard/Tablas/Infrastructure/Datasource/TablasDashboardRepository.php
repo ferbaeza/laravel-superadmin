@@ -3,50 +3,29 @@
 namespace Baezeta\Admin\Dashboard\Tablas\Infrastructure\Datasource;
 
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
-use Baezeta\Admin\Dashboard\Tablas\Domain\Entity\TablaEntity;
-use Baezeta\Admin\Dashboard\Tablas\Domain\Entity\ColumnaEntity;
-use Baezeta\Admin\Dashboard\Tablas\Domain\Collection\TablasCollection;
-use Baezeta\Admin\Dashboard\Tablas\Domain\Collection\ColumnasCollection;
+use Baezeta\Admin\Shared\DB\Infrastructure\Facade\Database;
+use Baezeta\Admin\Dashboard\Tablas\Domain\Entity\TablaDashboardEntity;
+use Baezeta\Admin\Dashboard\Tablas\Domain\Collection\TablasDashboardCollection;
 use Baezeta\Admin\Dashboard\Tablas\Domain\Interfaces\TablasDashboardRepositoryInterface;
 
 class TablasDashboardRepository implements TablasDashboardRepositoryInterface
 {
-    public function getCollection(): TablasCollection
+    public function getCollection(): TablasDashboardCollection
     {
-        $tablesSQL = DB::select("
-            SELECT table_name
-            FROM information_schema.tables
-            WHERE table_schema = 'public'
-            AND table_type = 'BASE TABLE'
-        ");
+        $tablesSQL = Database::getDatabaseTables();
+
 
         $tablasDDBB = collect($tablesSQL)->map(function ($table) {
             return $table->table_name;
         });
-
-        $tablasColllection = new TablasCollection();
+        $tablasColllection = new TablasDashboardCollection();
 
         $tablasDDBB->each(function ($table) use (&$tablasColllection) {
-            $columnasCollection = new ColumnasCollection();
-            $tablaEntidad = new TablaEntity(
+            $tablaEntidad = new TablaDashboardEntity(
                 table: $table,
-                columnas: $columnasCollection
             );
-
-            collect(Schema::getColumns($table))->map(function ($nombreColumna) use (&$columnasCollection) {
-
-
-                $columnasCollection->push(new ColumnaEntity(
-                    name: $nombreColumna['name'],
-                    typeName: $nombreColumna['type_name'],
-                    type: $nombreColumna['type'],
-                    nullable: $nombreColumna['nullable'] == 1 ? true : false,
-                ));
-            });
             $tablasColllection->push($tablaEntidad);
         });
-
         return $tablasColllection;
     }
 }

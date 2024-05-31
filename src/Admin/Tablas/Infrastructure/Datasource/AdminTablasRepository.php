@@ -2,47 +2,59 @@
 
 namespace Baezeta\Admin\Admin\Tablas\Infrastructure\Datasource;
 
-use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Schema;
+use Baezeta\Admin\Shared\ValueObjects\UuidValue;
+use Baezeta\Admin\Admin\Tablas\Domain\Entity\ColumnaEntity;
+use Baezeta\Admin\Shared\DB\Infrastructure\Facade\Database;
+use Baezeta\Admin\Admin\Tablas\Domain\Entity\TablaAdminEntity;
+use Baezeta\Admin\Admin\Tablas\Domain\Collection\ColumnasCollection;
+use Baezeta\Admin\Admin\Tablas\Domain\Collection\TablasAdminCollection;
 use Baezeta\Admin\Admin\Tablas\Domain\Interfaces\AdminTablasRepositoryInterface;
-use Symfony\Component\Finder\Finder;
 
 class AdminTablasRepository implements AdminTablasRepositoryInterface
 {
-    public function listar()
+    public function getEntity(string $idTabla)
     {
-
-
-        $finder = new Finder();
-        $finder->files()->in(app_path());
-
-        $models = [];
-
-        foreach ($finder as $file) {
-            dump($file);
-            $namespace = 'App\\' . str_replace(['/', '.php'], ['\\', ''], $file->getRelativePathname());
-
-            if (is_subclass_of($namespace, 'Illuminate\Database\Eloquent\Model')) {
-                $models[] = $namespace;
-            }
-        }
-
-        dd($models);
+        $tabla = 'superadmin_roles';
+        $data = Database::getDataTable($tabla);
+        dd($data);
+        return true;
+    }
 
 
 
+    public function getCollection(): TablasAdminCollection
+    {
+        $tablesSQL = Database::getDatabaseTables();
 
-            // $models = DB::models();
-        $models = array_filter(
-            get_declared_classes(),
-            function ($class) {
-                return is_subclass_of($class, 'Illuminate\Database\Eloquent\Model');
-            }
-        );
+        $tablasDDBB = collect($tablesSQL)->map(function ($table) {
+            return $table->table_name;
+        });
 
-        $models = Model::getModels();
-        dd($models);
+        $tablasColllection = new TablasAdminCollection();
 
+        $tablasDDBB->each(function ($table) use (&$tablasColllection) {
+            $columnasCollection = new ColumnasCollection();
+            $tablaEntidad = new TablaAdminEntity(
+                id: UuidValue::create(),
+                table: $table,
+                columnas: $columnasCollection
+            );
+
+            collect(Schema::getColumns($table))->map(function ($nombreColumna) use (&$columnasCollection) {
+
+
+                $columnasCollection->push(new ColumnaEntity(
+                    name: $nombreColumna['name'],
+                    typeName: $nombreColumna['type_name'],
+                    type: $nombreColumna['type'],
+                    nullable: $nombreColumna['nullable'] == 1 ? true : false,
+                ));
+            });
+            $tablasColllection->push($tablaEntidad);
+        });
+
+        return $tablasColllection;
     }
 
 }
