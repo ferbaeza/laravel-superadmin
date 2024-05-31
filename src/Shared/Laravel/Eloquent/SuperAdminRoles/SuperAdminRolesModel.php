@@ -1,13 +1,13 @@
 <?php
 
-namespace Baezeta\Admin\Shared\Laravel\Eloquent\RolesDashboard;
+namespace Baezeta\Admin\Shared\Laravel\Eloquent\SuperAdminRoles;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Baezeta\Admin\Shared\Laravel\Eloquent\RolesDashboard\RolesDashboardFactory;
+use Baezeta\Admin\Shared\Laravel\Eloquent\SuperAdminRoles\SuperAdminRolesFactory;
 
-class RolesDashboardModel extends Model
+class SuperAdminRolesModel extends Model
 {
     use HasFactory;
     use HasUuids;
@@ -23,6 +23,6 @@ class RolesDashboardModel extends Model
 
     protected static function newFactory()
     {
-        return RolesDashboardFactory::new();
+        return SuperAdminRolesFactory::new();
     }
 }

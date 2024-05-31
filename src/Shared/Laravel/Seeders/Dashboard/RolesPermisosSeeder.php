@@ -6,8 +6,8 @@ use Illuminate\Database\Seeder;
 use Baezeta\Admin\Shared\Utils\StringUtils;
 use Baezeta\Admin\Shared\Constants\RolesConstants;
 use Baezeta\Admin\Shared\Constants\PermisosConstants;
-use Baezeta\Admin\Shared\Laravel\Eloquent\RolesDashboard\RolesDashboardModel;
-use Baezeta\Admin\Shared\Laravel\Eloquent\PermisosDashboard\PermisosDashboardModel;
+use Baezeta\Admin\Shared\Laravel\Eloquent\SuperAdminRoles\SuperAdminRolesModel;
+use Baezeta\Admin\Shared\Laravel\Eloquent\SuperAdminPermisos\SuperAdminPermisosModel;
 
 class RolesPermisosSeeder extends Seeder
 {
@@ -18,12 +18,12 @@ class RolesPermisosSeeder extends Seeder
     {
         $roles = RolesConstants::getRoles();
         foreach ($roles as $value) {
-            RolesDashboardModel::factory(['nombre' => StringUtils::capitalizar($value) , 'codigo' => $value])->create();
+            SuperAdminRolesModel::factory(['nombre' => StringUtils::capitalizar($value), 'codigo' => $value])->create();
         }
 
         $permisos = PermisosConstants::getPermisos();
         foreach ($permisos as  $value) {
-            PermisosDashboardModel::factory(['nombre' => StringUtils::minusculas($value)])->create();
+            SuperAdminPermisosModel::factory(['nombre' => StringUtils::minusculas($value)])->create();
         }
     }
 }

@@ -3,10 +3,9 @@
 namespace Baezeta\Admin\Shared\Laravel\Seeders\Base;
 
 use Illuminate\Database\Seeder;
-use Baezeta\Admin\Shared\Laravel\Seeders\SuperAdminSeeder;
-use Baezeta\Admin\Shared\Laravel\Seeders\Dashboard\DashboardSeeder;
+use Baezeta\Admin\Shared\Laravel\Seeders\Dashboard\MenuSideBarSeeder;
 use Baezeta\Admin\Shared\Laravel\Seeders\Dashboard\RolesPermisosSeeder;
-use Baezeta\Admin\Shared\Laravel\Eloquent\SuperAdminUsuarios\SuperAdminUsuariosModel;
+use Baezeta\Admin\Shared\Laravel\Seeders\Dashboard\SuperAdminUsuariosSeeder;
 
 class BasePackageSeeder extends Seeder
 {
@@ -15,12 +14,10 @@ class BasePackageSeeder extends Seeder
      */
     public function run(): void
     {
-        $dataUsuariosAdmin = ['nombre' => 'Fer Baeza', 'email' => 'fbaezahurtado@gmail.com', 'password' => cryptPass('1008')];
-        SuperAdminUsuariosModel::factory($dataUsuariosAdmin)->create();
-
         $this->call([
+            SuperAdminUsuariosSeeder::class,
             RolesPermisosSeeder::class,
-            DashboardSeeder::class,
+            MenuSideBarSeeder::class,
         ]);
 
     }

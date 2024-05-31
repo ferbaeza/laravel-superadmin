@@ -1,16 +1,16 @@
 <?php
 
-namespace Baezeta\Admin\Shared\Laravel\Eloquent\PermisosDashboard;
+namespace Baezeta\Admin\Shared\Laravel\Eloquent\SuperAdminPermisos;
 
 use Illuminate\Foundation\Testing\WithFaker;
 use Baezeta\Admin\Shared\ValueObjects\UuidValue;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class PermisosDashboardFactory extends Factory
+class SuperAdminPermisosFactory extends Factory
 {
     use WithFaker;
 
-    protected $model = PermisosDashboardModel::class;
+    protected $model = SuperAdminPermisosModel::class;
 
     public function definition()
     {

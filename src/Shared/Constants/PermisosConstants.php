@@ -4,16 +4,16 @@ namespace Baezeta\Admin\Shared\Constants;
 
 class PermisosConstants
 {
-    public const DASHBOARD_LEER = 'dashboard/ver';
+    public const DASHBOARD_LEER = 'superadmin/ver';
 
-    public const USUARIOS_LEER = 'dashboard/usuarios/ver';
-    public const USUARIOS_EDITAR = 'dashboard/usuarios/editar';
+    public const USUARIOS_LEER = 'superadmin/usuarios/ver';
+    public const USUARIOS_EDITAR = 'superadmin/usuarios/editar';
     
-    public const ROLES_LEER = 'dashboard/roles/ver';
-    public const ROLES_EDITAR = 'dashboard/roles/editar';
+    public const ROLES_LEER = 'superadmin/roles/ver';
+    public const ROLES_EDITAR = 'superadmin/roles/editar';
     
-    public const PERMISOS_LEER = 'dashboard/permisos/ver';
-    public const PERMISOS_EDITAR = 'dashboard/permisos/editar';
+    public const TABLAS_LEER = 'superadmin/tablas/ver';
+    public const TABLAS_EDITAR = 'superadmin/tablas/editar';
 
     public static function getPermisos(): array
     {
@@ -23,8 +23,8 @@ class PermisosConstants
             self::USUARIOS_EDITAR ,
             self::ROLES_LEER ,
             self::ROLES_EDITAR,
-            self::PERMISOS_LEER ,
-            self::PERMISOS_EDITAR ,
+            self::TABLAS_LEER ,
+            self::TABLAS_EDITAR ,
         ];
     }
 }

@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use Baezeta\Admin\Shared\Constants\MenuConstants;
 use Baezeta\Admin\Shared\Laravel\Eloquent\SuperAdminMenu\SuperAdminMenuModel;
 
-class DashboardSeeder extends Seeder
+class MenuSideBarSeeder extends Seeder
 {
     /**
      * Run the database seeds.

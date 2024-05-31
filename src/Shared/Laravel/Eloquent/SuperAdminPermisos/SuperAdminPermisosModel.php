@@ -1,12 +1,12 @@
 <?php
 
-namespace Baezeta\Admin\Shared\Laravel\Eloquent\PermisosDashboard;
+namespace Baezeta\Admin\Shared\Laravel\Eloquent\SuperAdminPermisos;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class PermisosDashboardModel extends Model
+class SuperAdminPermisosModel extends Model
 {
     use HasFactory;
     use HasUuids;
@@ -23,6 +23,6 @@ class PermisosDashboardModel extends Model
 
     protected static function newFactory()
     {
-        return PermisosDashboardFactory::new();
+        return SuperAdminPermisosFactory::new();
     }
 }

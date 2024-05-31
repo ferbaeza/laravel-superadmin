@@ -24,7 +24,7 @@ return new class extends Migration
         Schema::create('superadmin_menu', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('nombre');
-            $table->string('url')->nullable();
+            $table->string('route')->nullable();
             $table->string('codigo');
             $table->string('codigo_padre')->nullable();
 

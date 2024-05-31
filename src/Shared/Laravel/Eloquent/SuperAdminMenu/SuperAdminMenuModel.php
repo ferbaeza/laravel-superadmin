@@ -20,7 +20,7 @@ class SuperAdminMenuModel extends Model
 
     protected $fillable = [
         'nombre',
-        'url',
+        'route',
         'codigo',
         'codigo_padre',
     ];
