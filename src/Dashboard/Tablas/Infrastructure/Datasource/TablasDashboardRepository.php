@@ -2,27 +2,24 @@
 
 namespace Baezeta\Admin\Dashboard\Tablas\Infrastructure\Datasource;
 
-use Illuminate\Support\Facades\DB;
-use Baezeta\Admin\Shared\DB\Infrastructure\Facade\Database;
+use Baezeta\Admin\Shared\ValueObjects\UuidValue;
 use Baezeta\Admin\Dashboard\Tablas\Domain\Entity\TablaDashboardEntity;
 use Baezeta\Admin\Dashboard\Tablas\Domain\Collection\TablasDashboardCollection;
 use Baezeta\Admin\Dashboard\Tablas\Domain\Interfaces\TablasDashboardRepositoryInterface;
+use Baezeta\Admin\Shared\Laravel\Eloquent\SuperAdminDatabaseTablas\SuperAdminDatabaseTablasModel;
 
 class TablasDashboardRepository implements TablasDashboardRepositoryInterface
 {
     public function getCollection(): TablasDashboardCollection
     {
-        $tablesSQL = Database::getDatabaseTables();
+        $tablesSQL = SuperAdminDatabaseTablasModel::all();
 
-
-        $tablasDDBB = collect($tablesSQL)->map(function ($table) {
-            return $table->table_name;
-        });
         $tablasColllection = new TablasDashboardCollection();
 
-        $tablasDDBB->each(function ($table) use (&$tablasColllection) {
+        $tablesSQL->each(function ($table) use (&$tablasColllection) {
             $tablaEntidad = new TablaDashboardEntity(
-                table: $table,
+                id: new UuidValue($table->id),
+                nombre: $table->nombre,
             );
             $tablasColllection->push($tablaEntidad);
         });

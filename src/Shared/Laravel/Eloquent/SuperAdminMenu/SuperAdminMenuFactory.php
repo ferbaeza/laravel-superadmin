@@ -19,6 +19,7 @@ class SuperAdminMenuFactory extends Factory
             'id' => UuidValue::create()->value(),
             'nombre' => $this->faker->name,
             'route' => $this->faker->url,
+            'icon' => $this->faker->word,
             'codigo' => $this->faker->word,
             'codigo_padre' => $this->faker->word,
         ];

@@ -2,6 +2,7 @@
 
 namespace Baezeta\Admin\Shared\Laravel\Eloquent\SuperAdminRoles;
 
+use Baezeta\Admin\Shared\Enums\Roles;
 use Baezeta\Admin\Shared\Utils\StringUtils;
 use Illuminate\Foundation\Testing\WithFaker;
 use Baezeta\Admin\Shared\ValueObjects\UuidValue;
@@ -16,11 +17,10 @@ class SuperAdminRolesFactory extends Factory
 
     public function definition()
     {
-        $faker = $this->faker->name;
         return [
             'id' => UuidValue::create()->value(),
-            'nombre' => StringUtils::capitalizar($faker),
-            'codigo' => StringUtils::minusculas($faker),
+            'nombre' => StringUtils::capitalizar($this->faker->name),
+            'codigo' => Roles::USUARIO->value,
         ];
     }
 }

@@ -1,17 +1,17 @@
 <?php
 
-namespace Baezeta\Admin\Admin\Tablas\Domain\Entity;
+namespace Baezeta\Admin\Shared\DB\Domain\Entity;
 
 use JsonSerializable;
-use Baezeta\Admin\Admin\Tablas\Domain\Collection\ColumnasCollection;
+use Baezeta\Admin\Shared\DB\Domain\Collection\DBColumnasCollection;
 use Baezeta\Admin\Shared\ValueObjects\UuidValue;
 
-class TablaAdminEntity implements JsonSerializable
+class DBTablaAdminEntity implements JsonSerializable
 {
     public function __construct(
         public readonly UuidValue $id,
-        public readonly string $nombre,
-        public readonly ColumnasCollection $columnas,
+        public readonly string $table,
+        public readonly DBColumnasCollection $columnas,
     ) {
     }
 
@@ -19,7 +19,7 @@ class TablaAdminEntity implements JsonSerializable
     {
         return [
             'id' => $this->id,
-            'nombre' => $this->nombre,
+            'table' => $this->table,
             'totalColumnas' => $this->columnas->count(),
             'columnas' => $this->columnas
         ];

@@ -2,55 +2,68 @@
 
 namespace Baezeta\Admin\Admin\Tablas\Infrastructure\Datasource;
 
-use Illuminate\Support\Facades\Schema;
 use Baezeta\Admin\Shared\ValueObjects\UuidValue;
 use Baezeta\Admin\Admin\Tablas\Domain\Entity\ColumnaEntity;
-use Baezeta\Admin\Shared\DB\Infrastructure\Facade\Database;
 use Baezeta\Admin\Admin\Tablas\Domain\Entity\TablaAdminEntity;
 use Baezeta\Admin\Admin\Tablas\Domain\Collection\ColumnasCollection;
 use Baezeta\Admin\Admin\Tablas\Domain\Collection\TablasAdminCollection;
 use Baezeta\Admin\Admin\Tablas\Domain\Interfaces\AdminTablasRepositoryInterface;
+use Baezeta\Admin\Shared\Laravel\Eloquent\SuperAdminDatabaseTablas\SuperAdminDatabaseTablasModel;
+
 
 class AdminTablasRepository implements AdminTablasRepositoryInterface
 {
     public function getEntity(string $idTabla)
     {
-        $tabla = 'superadmin_roles';
-        $data = Database::getDataTable($tabla);
-        dd($data);
-        return true;
+        $tabla = SuperAdminDatabaseTablasModel::find($idTabla);
+
+        $columnasCollection = new ColumnasCollection();
+
+        $columnas = json_decode($tabla->columnas, true);
+        foreach ($columnas as $columna) {
+            $columnasCollection->push(new ColumnaEntity(
+                name: $columna['name'],
+                type: $columna['type'],
+                nullable: $columna['nullable'] == 1 ? true : false,
+                typeName: $columna['typeName'],
+            ));
+        }
+
+        return  new TablaAdminEntity(
+            id: new UuidValue($tabla->id),
+            nombre: $tabla->nombre,
+            columnas: $columnasCollection
+        );
     }
 
 
 
     public function getCollection(): TablasAdminCollection
     {
-        $tablesSQL = Database::getDatabaseTables();
-
-        $tablasDDBB = collect($tablesSQL)->map(function ($table) {
-            return $table->table_name;
-        });
+        $tablas = SuperAdminDatabaseTablasModel::all();
 
         $tablasColllection = new TablasAdminCollection();
 
-        $tablasDDBB->each(function ($table) use (&$tablasColllection) {
+        $tablas->each(function ($table) use (&$tablasColllection) {
+            
             $columnasCollection = new ColumnasCollection();
+
+            $columnas = json_decode($table->columnas, true);
+            foreach ($columnas as $columna) {
+                $columnasCollection->push(new ColumnaEntity(
+                    name: $columna['name'],
+                    type: $columna['type'],
+                    nullable: $columna['nullable'] == 1 ? true : false,
+                    typeName: $columna['typeName'],
+                ));
+            }
+
             $tablaEntidad = new TablaAdminEntity(
-                id: UuidValue::create(),
-                table: $table,
+                id: new UuidValue($table->id),
+                nombre: $table->nombre,
                 columnas: $columnasCollection
             );
 
-            collect(Schema::getColumns($table))->map(function ($nombreColumna) use (&$columnasCollection) {
-
-
-                $columnasCollection->push(new ColumnaEntity(
-                    name: $nombreColumna['name'],
-                    typeName: $nombreColumna['type_name'],
-                    type: $nombreColumna['type'],
-                    nullable: $nombreColumna['nullable'] == 1 ? true : false,
-                ));
-            });
             $tablasColllection->push($tablaEntidad);
         });
 
