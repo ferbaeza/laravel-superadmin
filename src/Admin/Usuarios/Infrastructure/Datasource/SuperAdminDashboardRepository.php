@@ -30,7 +30,8 @@ class SuperAdminDashboardRepository implements SuperAdminDashboardRepositoryInte
 
     public function loginEmail(string $email, string $password, bool $recordar = false): bool | SuperAdminUser
     {
-        $usuario = SuperAdminUsuariosModel::where('email', $email)->first();
+        $usuario = $this->getUser(['email' => $email]);
+        // $usuario = SuperAdminUsuariosModel::where('email', $email)->first();
         if ($usuario) {
             $coincidePassword = $this->comprobarPassword($password, $usuario);
             if ($coincidePassword) {
@@ -44,6 +45,15 @@ class SuperAdminDashboardRepository implements SuperAdminDashboardRepositoryInte
             }
         }
         return false;
+    }
+
+    private function getUser(array $specification): SuperAdminUsuariosModel
+    {
+        $model = SuperAdminUsuariosModel::where($specification)->first();
+        if (!$model) {
+            throw new \Exception('Usuario no encontrado');
+        }
+        return $model;
     }
 
     private function comprobarPassword(string $password, SuperAdminUsuariosModel $usuario) : bool
