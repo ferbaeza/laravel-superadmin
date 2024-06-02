@@ -21,6 +21,11 @@ class UuidValue implements Value
         return new self(Str::uuid());
     }
 
+    public static function new(): string
+    {
+        return self::create()->value();
+    }
+
     public function value(): string
     {
         return $this->uuid;

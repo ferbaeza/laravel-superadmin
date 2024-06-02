@@ -13,7 +13,7 @@ class AdminUsuariosRoutes
     {
         Route::prefix(self::$prefix)
             ->group(function () {
-                Route::post('/crear-super-admin', [AdminUsuariosController::class, 'crearSuperAdmin'])->name('superAdmin');
+                Route::post('/super-admin', [AdminUsuariosController::class, 'crearSuperAdmin'])->name('superAdmin');
                 Route::post('/login', [AdminUsuariosController::class, 'login'])->name('login');
             });
     }

@@ -28,7 +28,6 @@ class RegistrarSuperAdminUsuarioCommandHandler
         }
         
         $roleUsuario = $this->verificarRole($command);
-
         $user = SuperAdminUser::fromCommand($command, $roleUsuario);
         $this->repository->save($user);
         return $user;

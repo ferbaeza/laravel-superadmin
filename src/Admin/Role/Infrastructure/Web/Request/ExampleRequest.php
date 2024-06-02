@@ -1,6 +1,6 @@
 <?php
 
-namespace Baezeta\Admin\Shared\AAAScalffoldingExample\Infrastructure\Web\Request;
+namespace Baezeta\Admin\Admin\Role\Infrastructure\Web\Request;
 
 use Baezeta\Admin\Shared\Laravel\Requests\BaseRequest;
 

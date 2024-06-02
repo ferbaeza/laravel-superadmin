@@ -18,7 +18,6 @@ class SuperAdminDashboardRepository implements SuperAdminDashboardRepositoryInte
 
     public function save(SuperAdminUser $user): void
     {
-        // dd($user->getLastActivity());
         $model = new SuperAdminUsuariosModel();
         $model->id = $user->getUserId();
         $model->nombre = $user->getNombre();
@@ -33,17 +32,23 @@ class SuperAdminDashboardRepository implements SuperAdminDashboardRepositoryInte
     {
         $usuario = SuperAdminUsuariosModel::where('email', $email)->first();
         if ($usuario) {
-            $coincidePassword = ($password === decryptPass($usuario->password));
+            $coincidePassword = $this->comprobarPassword($password, $usuario);
             if ($coincidePassword) {
                 return new SuperAdminUser(
                     id: new UuidValue($usuario->id),
                     nombre: $usuario->nombre,
                     email: $usuario->email,
                     password: $usuario->password,
+                    fkRoleId: $usuario->fk_role_id,
                 );
             }
         }
         return false;
+    }
+
+    private function comprobarPassword(string $password, SuperAdminUsuariosModel $usuario) : bool
+    {
+        return $password === (decryptPass($usuario->password));
     }
 
 }

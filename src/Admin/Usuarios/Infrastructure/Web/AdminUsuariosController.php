@@ -25,9 +25,8 @@ class AdminUsuariosController extends BaseController
     {
         $data = $request->validated();
         $command = new RegistrarSuperAdminUsuarioCommand($data['nombre'], $data['email'], $data['password'], $data['codigoRole']);
-        
+
         $response = BusFacade::process($command);
-        // dd($response);
         return ApiResponse::success('Nuevo Usuario SuperAdmin', $response);
     }
 

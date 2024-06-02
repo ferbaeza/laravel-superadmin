@@ -10,7 +10,7 @@ use Baezeta\Admin\Admin\Usuarios\Application\RegistrarSuperAdminUsuarioCommand;
 class SuperAdminUser implements JsonSerializable
 {
     public function __construct(
-        protected readonly UuidValue $id,
+        public readonly UuidValue $id,
         protected readonly string $nombre,
         protected readonly string $email,
         protected readonly string $password,
