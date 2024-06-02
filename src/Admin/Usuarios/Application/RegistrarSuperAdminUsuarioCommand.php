@@ -8,6 +8,7 @@ class RegistrarSuperAdminUsuarioCommand
         public readonly string $nombre,
         public readonly string $email,
         public readonly string $password,
+        public readonly ?int $codigoRole = null,
     ) {
     }
 

@@ -24,6 +24,8 @@ class SuperAdminDashboardRepository implements SuperAdminDashboardRepositoryInte
         $model->nombre = $user->getNombre();
         $model->email = $user->getEmail();
         $model->password = $user->getPassword();
+        $model->fk_role_id = $user->getRoleId();
+
         $model->save();
     }
 

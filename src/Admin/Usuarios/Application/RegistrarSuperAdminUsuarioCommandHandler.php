@@ -2,16 +2,20 @@
 
 namespace Baezeta\Admin\Admin\Usuarios\Application;
 
-use Illuminate\Support\Facades\DB;
+use Baezeta\Admin\Shared\Enums\Roles;
+use Baezeta\Admin\Admin\Role\Domain\Entity\RoleAdminEntity;
 use Baezeta\Admin\Admin\Usuarios\Domain\Entity\SuperAdminUser;
+use Baezeta\Admin\Admin\Role\Application\ObtenerFichaRoleAdminCommand;
 use Baezeta\Admin\Shared\Exceptions\Usuarios\UsuarioYaExisteException;
+use Baezeta\Admin\Admin\Role\Application\ObtenerFichaRoleAdminCommandHandler;
 use Baezeta\Admin\Admin\Usuarios\Domain\Interfaces\SuperAdminDashboardRepositoryInterface;
 
 class RegistrarSuperAdminUsuarioCommandHandler
 {
     public function __construct(
-        protected VerificarSuperAdminUsuarioCommandHandler $verificarUserHandler,
-        protected SuperAdminDashboardRepositoryInterface $repository
+        protected readonly VerificarSuperAdminUsuarioCommandHandler $verificarUserHandler,
+        protected readonly SuperAdminDashboardRepositoryInterface $repository,
+        protected readonly ObtenerFichaRoleAdminCommandHandler $obtenerFichaRoleAdminCommandHandler
     ) {
     }
 
@@ -22,9 +26,21 @@ class RegistrarSuperAdminUsuarioCommandHandler
         if ($existeSuperAdmin) {
             throw UsuarioYaExisteException::drop($command->email);
         }
-        $user = SuperAdminUser::fromCommand($command);
+        
+        $roleUsuario = $this->verificarRole($command);
+
+        $user = SuperAdminUser::fromCommand($command, $roleUsuario);
         $this->repository->save($user);
         return $user;
+    }
+    
+    private function verificarRole(RegistrarSuperAdminUsuarioCommand $command) : RoleAdminEntity
+    {
+        if(is_null($command->codigoRole)){
+            return $this->obtenerFichaRoleAdminCommandHandler->run(new ObtenerFichaRoleAdminCommand(Roles::USUARIO->value));
+        }
+        return $this->obtenerFichaRoleAdminCommandHandler->run(new ObtenerFichaRoleAdminCommand($command->codigoRole));
+        
     }
 
 }

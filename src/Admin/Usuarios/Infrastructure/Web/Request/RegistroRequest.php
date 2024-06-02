@@ -11,7 +11,8 @@ class RegistroRequest extends BaseRequest
         return [
             'nombre' => 'required|string',
             'email' => 'required|email',
-            'password' => 'required'
+            'password' => 'required',
+            'codigoRole' => 'nullable|integer',
         ];
     }
 }

@@ -24,7 +24,7 @@ class AdminUsuariosController extends BaseController
     public function crearSuperAdmin(RegistroRequest $request)
     {
         $data = $request->validated();
-        $command = new RegistrarSuperAdminUsuarioCommand($data['nombre'], $data['email'], $data['password']);
+        $command = new RegistrarSuperAdminUsuarioCommand($data['nombre'], $data['email'], $data['password'], $data['codigoRole']);
         
         $response = BusFacade::process($command);
         // dd($response);

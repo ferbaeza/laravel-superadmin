@@ -18,7 +18,7 @@ class TablaAdminEntity implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return [
-            'id' => $this->id,
+            'id' => $this->id->value(),
             'nombre' => $this->nombre,
             'totalColumnas' => $this->columnas->count(),
             'columnas' => $this->columnas
