@@ -11,6 +11,7 @@ class TablaAdminEntity implements JsonSerializable
     public function __construct(
         public readonly UuidValue $id,
         public readonly string $nombre,
+        public readonly int $size,
         public readonly ColumnasCollection $columnas,
     ) {
     }
@@ -20,8 +21,14 @@ class TablaAdminEntity implements JsonSerializable
         return [
             'id' => $this->id->value(),
             'nombre' => $this->nombre,
+            'size' => $this->getSize(),
             'totalColumnas' => $this->columnas->count(),
             'columnas' => $this->columnas
         ];
+    }
+
+    private function getSize()
+    {
+        return strval($this->size) . '-MB';
     }
 }

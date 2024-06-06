@@ -45,6 +45,7 @@ return new class extends Migration
         Schema::create('superadmin_database_tablas', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('nombre');
+            $table->integer('size');
             $table->jsonb('columnas');
         });
 

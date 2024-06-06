@@ -24,7 +24,7 @@ function Layaout() {
 
               <Route path="refresh" element={<RefreshPage />} />
               <Route path="main" element={<DashboardMainPage />} />
-              <Route path="users" element={<Usuarios />} />
+              <Route path="usuarios" element={<Usuarios />} />
               <Route path="tablas" element={<Tablas />} />
               <Route path="login" element={<Login />} />
             </Route>

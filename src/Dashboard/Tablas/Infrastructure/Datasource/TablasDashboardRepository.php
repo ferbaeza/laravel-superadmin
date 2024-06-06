@@ -20,6 +20,7 @@ class TablasDashboardRepository implements TablasDashboardRepositoryInterface
             $tablaEntidad = new TablaDashboardEntity(
                 id: new UuidValue($table->id),
                 nombre: $table->nombre,
+                size: $table->size,
             );
             $tablasColllection->push($tablaEntidad);
         });

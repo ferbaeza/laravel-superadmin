@@ -10,6 +10,7 @@ class TablaDashboardEntity implements JsonSerializable
     public function __construct(
         public readonly UuidValue $id,
         public readonly string $nombre,
+        public readonly int $size,
     ) {
     }
 
@@ -18,6 +19,7 @@ class TablaDashboardEntity implements JsonSerializable
         return [
             'id' => $this->id->value(),
             'nombre' => $this->nombre,
+            'size' => $this->size,
         ];
     }
 }

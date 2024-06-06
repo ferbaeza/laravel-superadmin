@@ -43,101 +43,85 @@ function Sidebar() {
           <span></span>
         </div>
       </div>
+      <div className="menu">
+        {menu.map((item) => (
+          <div className="menu-list">
+            <div className="menu-list-titulo">
+              <span className="span-list-titulo">{item.nombre}</span>
+            </div>
+            <div className="menu-list-hijos">
+              {item.subMenus?.data.map((child) => (
+                <div className="list-hijo">
+                  <span>
+                    <SidebarIcon />
+                  </span>
+                  <span onClick={() => handleCardClick(child.route)}>
+                    {child.nombre}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
 
-      {menu.map((item) => (
+
         <div className="menu-list">
           <div className="menu-list-titulo">
-            <span className="span-list-titulo">{item.nombre}</span>
+            <span className="span-list-titulo">Menu</span>
           </div>
           <div className="menu-list-hijos">
-            {item.subMenus?.data.map((child) => (
-              <div className="list-hijo">
-                <span>
-                  <SidebarIcon />
-                </span>
-                <span onClick={() => handleCardClick(child.route)}>
-                  {child.nombre}
-                </span>
-              </div>
-            ))}
+            <div className="list-hijo" onClick={() => handleCardClick("main")} key="main">
+              <span>
+                <SidebarIcon />
+              </span>
+              <span>Dashboard</span>
+            </div>
+            <div className="list-hijo" onClick={() => handleCardClick("tablas")} key="tablas">
+              <span>
+                <Dashboard />
+              </span>
+              <span>Tablas</span>
+            </div>
+            <div className="list-hijo" onClick={() => handleCardClick("usuarios")} key="usuarios">
+              <span>
+                <UserIcon />
+              </span>
+              <span>Usuarios</span>
+            </div>
           </div>
         </div>
-      ))}
+        <div className="menu-settings">
+          <div className="menu-settings-titulo">
+            <span className="span-list-titulo">Settings</span>
+          </div>
+          <div className="menu-settings-hijos">
+            <div className="list-hijo">
+              <span>
+                <UserIcon />
+              </span>
+              <span>Profile</span>
+            </div>
+            <div className="list-hijo">
+              <span>
+                <UserIcon />
+              </span>
+              <span>Settings</span>
+            </div>
+            <div className="list-hijo">
+              <span>
+                <UserIcon />
+              </span>
+              <span>Logout</span>
+            </div>
+          </div>
+        </div>
+        <div className="menu-footer">
+          <div className="footer-class">
+            <span className="footer-firma">Dashboard</span>
+            <span className="footer-firma">Fernando Baeza</span>
+          </div>
+        </div>
 
-      {/* {menu.map((item) => (
-        <div className="menu-list">
-          <div className="menu-list-titulo">
-            <span className="span-list-titulo">{item.title}</span>
-          </div>
-          <div className="menu-list-hijos">
-            {item.children.map((child) => (
-              <div className="list-hijo">
-                <span>
-                  <SidebarIcon />
-                </span>
-                <span onClick={() => handleCardClick(child.route)}>
-                  {child.title}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      ))} */}
-      <div className="menu-list">
-        <div className="menu-list-titulo">
-          <span className="span-list-titulo">Menu</span>
-        </div>
-        <div className="menu-list-hijos">
-          <div className="list-hijo" onClick={() => handleCardClick("main")}>
-            <span>
-              <SidebarIcon />
-            </span>
-            <span>Dashboard</span>
-          </div>
-          <div className="list-hijo" onClick={() => handleCardClick("tablas")}>
-            <span>
-              <Dashboard />
-            </span>
-            <span>Tablas</span>
-          </div>
-          <div className="list-hijo">
-            <span>
-              <UserIcon />
-            </span>
-            <span>Usuarios</span>
-          </div>
-        </div>
-      </div>
-      <div className="menu-settings">
-        <div className="menu-settings-titulo">
-          <span className="span-list-titulo">Settings</span>
-        </div>
-        <div className="menu-settings-hijos">
-          <div className="list-hijo">
-            <span>
-              <UserIcon />
-            </span>
-            <span>Profile</span>
-          </div>
-          <div className="list-hijo">
-            <span>
-              <UserIcon />
-            </span>
-            <span>Settings</span>
-          </div>
-          <div className="list-hijo">
-            <span>
-              <UserIcon />
-            </span>
-            <span>Logout</span>
-          </div>
-        </div>
-      </div>
-      <div className="menu-footer">
-        <div className="footer-class">
-          <span className="footer-firma">Dashboard</span>
-          <span className="footer-firma">Fernando Baeza</span>
-        </div>
       </div>
     </div>
   );

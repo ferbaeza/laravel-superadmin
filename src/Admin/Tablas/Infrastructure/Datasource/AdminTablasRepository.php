@@ -32,6 +32,7 @@ class AdminTablasRepository implements AdminTablasRepositoryInterface
         return  new TablaAdminEntity(
             id: new UuidValue($tabla->id),
             nombre: $tabla->nombre,
+            size : $tabla->size,
             columnas: $columnasCollection
         );
     }
@@ -61,6 +62,7 @@ class AdminTablasRepository implements AdminTablasRepositoryInterface
             $tablaEntidad = new TablaAdminEntity(
                 id: new UuidValue($table->id),
                 nombre: $table->nombre,
+                size: $table->size,
                 columnas: $columnasCollection
             );
 

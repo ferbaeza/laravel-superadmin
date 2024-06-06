@@ -10,7 +10,8 @@ class DBTablaAdminEntity implements JsonSerializable
 {
     public function __construct(
         public readonly UuidValue $id,
-        public readonly string $table,
+        public readonly string $nombre,
+        public readonly string $size,
         public readonly DBColumnasCollection $columnas,
     ) {
     }
@@ -19,7 +20,8 @@ class DBTablaAdminEntity implements JsonSerializable
     {
         return [
             'id' => $this->id,
-            'table' => $this->table,
+            'nombre' => $this->nombre,
+            'size' => $this->size,
             'totalColumnas' => $this->columnas->count(),
             'columnas' => $this->columnas
         ];
