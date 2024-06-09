@@ -2,11 +2,11 @@
 
 namespace Baezeta\Admin\Shared\DB\Infrastructure\Datasource;
 
+use stdClass;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Builder;
-use Illuminate\Database\ConnectionInterface;
 use Baezeta\Admin\Shared\ValueObjects\UuidValue;
 use Illuminate\Database\ConnectionResolverInterface;
 use Baezeta\Admin\Shared\DB\Domain\Entity\DBColumnaEntity;
@@ -18,8 +18,13 @@ use Baezeta\Admin\Shared\Laravel\Eloquent\SuperAdminDatabaseTablas\SuperAdminDat
 
 class DataBaseRepository implements DataBaseRepositoryInterfaces
 {
-    private ConnectionResolverInterface $connections;
+    // private ConnectionResolverInterface $connections;
 
+    public function insert(string $sql, array $valores) : void
+    {
+        dd($sql, $valores);
+        DB::insert($sql, $valores);
+    }
 
     public function getDataTable(string $table): array
     {
@@ -41,19 +46,65 @@ class DataBaseRepository implements DataBaseRepositoryInterfaces
 
     public function getDatabaseTables(): Collection
     {
-        $this->connections = app()->make(ConnectionResolverInterface::class);
-        $connection = $this->connections->connection();
-        $schema = $connection->getSchemaBuilder();
+        // $this->connections = app()->make(ConnectionResolverInterface::class);
+        // $connection = $this->connections->connection();
+        // $schema = $connection->getSchemaBuilder();
 
-        return ($this->tables($schema));
-    }
-
-    protected function tables(Builder $schema): Collection
-    {
-        return collect($schema->getTables())->map(fn ($table) => [
+        return collect(Schema::getTables())->map(fn ($table) => [
             'nombre' => $table['name'],
             'size' => $table['size'],
         ]);
+        // return ($this->tables($schema));
+    }
+
+    // protected function tables(Builder $schema): Collection
+    // {
+    // return collect($schema->getTables())->map(fn ($table) => [
+    //     'nombre' => $table['name'],
+    //     'size' => $table['size'],
+    // ]);
+    // }
+
+    public function obtenerReferenciaClaveForanea($nombreTabla, $nombreColumna)
+    {
+        $result = DB::select("
+        SELECT 
+            rc.update_rule AS regla_actualizacion,
+            rc.delete_rule AS regla_eliminacion,
+            kcu.table_name AS tabla,
+            kcu.column_name AS columna,
+            ccu.table_name AS tabla_referenciada,
+            ccu.column_name AS columna_referenciada
+        FROM 
+            information_schema.table_constraints AS tc 
+            JOIN information_schema.key_column_usage AS kcu
+            ON tc.constraint_name = kcu.constraint_name
+            JOIN information_schema.referential_constraints AS rc 
+            ON tc.constraint_name = rc.constraint_name
+            JOIN information_schema.constraint_column_usage AS ccu
+            ON rc.unique_constraint_name = ccu.constraint_name
+        WHERE 
+            tc.constraint_type = 'FOREIGN KEY' 
+            AND kcu.table_name = ?; 
+    ", [$nombreTabla]);
+
+        return $result[0] ?? null;
+    }
+
+    public function tieneClaveForanea($nombreTabla, $nombreColumna)
+    {
+        $result = DB::select("
+        SELECT COUNT(*) AS count 
+        FROM information_schema.table_constraints AS tc 
+        JOIN information_schema.key_column_usage AS kcu
+          ON tc.constraint_name = kcu.constraint_name
+          AND tc.table_schema = kcu.table_schema
+        WHERE tc.constraint_type = 'FOREIGN KEY' 
+        AND tc.table_name = ? 
+        AND kcu.column_name = ?
+    ", [$nombreTabla, $nombreColumna]);
+
+        return $result[0]->count > 0;
     }
 
     public function getCollection(): DBTablasAdminCollection
@@ -70,15 +121,30 @@ class DataBaseRepository implements DataBaseRepositoryInterfaces
                 size: $table['size'],
                 columnas: $columnasCollection
             );
+            collect(Schema::getColumns($table['nombre']))->map(function ($nombreColumna) use (&$columnasCollection, $table) {
+                $tieneClaveForanea = $this->tieneClaveForanea($table['nombre'], $nombreColumna['name']);
+                    
+                if ($tieneClaveForanea) {
+                        $referenciaClaveForanea = $this->obtenerReferenciaClaveForanea($table['nombre'], $nombreColumna['name']);
+                        // dd($referenciaClaveForanea);
 
-            collect(Schema::getColumns($table['nombre']))->map(function ($nombreColumna) use (&$columnasCollection) {
+
+                        $a = new stdClass();
+                        $a->columnaForeignKey = $nombreColumna['name'];
+                        $a->tabla = $referenciaClaveForanea->tabla;
+                        $a->tablaReferenciada = $referenciaClaveForanea->tabla_referenciada;
+                        $a->columna = $referenciaClaveForanea->columna_referenciada;
+
+                        dump($a);
+                    }
 
 
-                $columnasCollection->push(new DBColumnaEntity(
+                    $columnasCollection->push(new DBColumnaEntity(
                     name: $nombreColumna['name'],
                     typeName: $nombreColumna['type_name'],
                     type: $nombreColumna['type'],
                     nullable: $nombreColumna['nullable'] == 1 ? true : false,
+                    foreign : $tieneClaveForanea
                 ));
             });
             $tablasColllection->push($tablaEntidad);

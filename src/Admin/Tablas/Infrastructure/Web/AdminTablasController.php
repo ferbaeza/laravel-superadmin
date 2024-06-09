@@ -34,7 +34,7 @@ class AdminTablasController
 
     /**
      * Crear Registro en Tabla
-     * @return TablaAdminEntity
+     * @return stdClass
      */
     public function addRegistroTabla(Request $request, string  $idTabla)
     {

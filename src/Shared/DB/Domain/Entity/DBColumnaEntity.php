@@ -11,6 +11,7 @@ class DBColumnaEntity implements JsonSerializable
         public readonly string $typeName,
         public readonly string $type,
         public readonly bool $nullable,
+        public readonly bool $foreign = false,
     ) {
     }
 
@@ -20,7 +21,8 @@ class DBColumnaEntity implements JsonSerializable
             'name' => $this->name,
             'typeName' => $this->typeName,
             'type' => $this->type,
-            'nullable' => $this->nullable
+            'nullable' => $this->nullable,
+            'foreign' => $this->foreign,
         ];
     }
 }

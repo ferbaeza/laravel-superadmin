@@ -2,7 +2,10 @@
 
 namespace Baezeta\Admin\Admin\Tablas\Domain\Enums;
 
+use Baezeta\Admin\Shared\Utils\Validadores\UuidValidador;
+use Baezeta\Admin\Shared\Utils\Validadores\FechaValidador;
 use Baezeta\Admin\Shared\Utils\Validadores\StringValidador;
+use Baezeta\Admin\Shared\Utils\Validadores\IntegerValidador;
 
 enum TablasFiltro
 {
@@ -23,10 +26,10 @@ enum TablasFiltro
     {
         return match ($type) {
             'varchar' => new StringValidador(),
-            'int', 'int2', 'int4', 'int8'=> self::INT,
-            'timestamp' => self::TIMESTAMP,
-            'uuid' => self::UUID,
-            default => throw new \Exception("Tipo de dato no soportado: $type"),
+            'int', 'int2', 'int4', 'int8'=> new IntegerValidador(),
+            'timestamp', 'timestamptz', 'created_at', 'updated_at', 'deleted_at' => new FechaValidador(),
+            'uuid' => new UuidValidador(),
+            default => new StringValidador(),
         };
     }
 

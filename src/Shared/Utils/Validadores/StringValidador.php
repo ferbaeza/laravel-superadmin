@@ -2,10 +2,11 @@
 
 namespace Baezeta\Admin\Shared\Utils\Validadores;
 
-class StringValidador
-{
+use Baezeta\Admin\Shared\Utils\Validadores\ValidadorBase;
 
-    public function validar(string $valor)
+class StringValidador extends ValidadorBase
+{
+    public function validar(mixed $valor)
     {
         return is_string($valor) && !empty($valor);
     }
