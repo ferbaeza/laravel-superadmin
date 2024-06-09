@@ -5,6 +5,7 @@ namespace Baezeta\Admin\Admin\Tablas\Infrastructure\Datasource;
 use Baezeta\Admin\Shared\ValueObjects\UuidValue;
 use Baezeta\Admin\Admin\Tablas\Domain\Entity\ColumnaEntity;
 use Baezeta\Admin\Admin\Tablas\Domain\Entity\TablaAdminEntity;
+use Baezeta\Admin\Shared\Exceptions\Tablas\TablaNoExisteException;
 use Baezeta\Admin\Admin\Tablas\Domain\Collection\ColumnasCollection;
 use Baezeta\Admin\Admin\Tablas\Domain\Collection\TablasAdminCollection;
 use Baezeta\Admin\Admin\Tablas\Domain\Interfaces\AdminTablasRepositoryInterface;
@@ -13,9 +14,13 @@ use Baezeta\Admin\Shared\Laravel\Eloquent\SuperAdminDatabaseTablas\SuperAdminDat
 
 class AdminTablasRepository implements AdminTablasRepositoryInterface
 {
-    public function getEntity(string $idTabla)
+    public function getEntity(string $idTabla) : TablaAdminEntity
     {
         $tabla = SuperAdminDatabaseTablasModel::find($idTabla);
+
+        if(!$tabla) {
+            throw TablaNoExisteException::drop($idTabla);
+        }
 
         $columnasCollection = new ColumnasCollection();
 

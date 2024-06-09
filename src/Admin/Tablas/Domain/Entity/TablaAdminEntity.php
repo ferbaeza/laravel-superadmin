@@ -26,6 +26,11 @@ class TablaAdminEntity implements JsonSerializable
             'columnas' => $this->columnas
         ];
     }
+    
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
 
     private function getSize()
     {

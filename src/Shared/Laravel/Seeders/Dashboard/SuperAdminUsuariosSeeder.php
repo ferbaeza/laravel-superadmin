@@ -17,7 +17,7 @@ class SuperAdminUsuariosSeeder extends Seeder
         $defaultRole = $this->getDefaultRole();
         $admin = ['nombre' => 'Fer Baeza', 'email' => 'fbaezahurtado@gmail.com', 'password' => cryptPass('1008'), 'fk_role_id' => $this->getRoleAdmin()];
         SuperAdminUsuariosModel::factory($admin)->create();
-        SuperAdminUsuariosModel::factory(['fk_role_id' => $defaultRole])->count(4)->create();
+        SuperAdminUsuariosModel::factory(['fk_role_id' => $defaultRole])->count(2)->create();
     }
 
     public function getRoleAdmin()

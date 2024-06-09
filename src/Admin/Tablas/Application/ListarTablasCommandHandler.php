@@ -15,6 +15,7 @@ class ListarTablasCommandHandler
 
     public function run(ListarTablasCommand $command): TablasAdminCollection
     {
-        return $this->repositorio->getCollection();
+        $tablasCollection =  $this->repositorio->getCollection();
+        return $tablasCollection->filtradas();
     }
 }

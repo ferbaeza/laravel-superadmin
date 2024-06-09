@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use Baezeta\Admin\Shared\Utils\ApiResponse;
 use Baezeta\Admin\Shared\Bus\Domain\BusFacade;
 use Baezeta\Admin\Admin\Tablas\Application\ListarTablasCommand;
+use Baezeta\Admin\Admin\Tablas\Application\CrearRegistroTablaCommand;
 use Baezeta\Admin\Admin\Tablas\Application\ObtenerDetalleTablaCommand;
+use stdClass;
 
 class AdminTablasController
 {
@@ -22,12 +24,27 @@ class AdminTablasController
 
     /**
      * Listar Detalle Tabla
-     * @return TablasAdminCollection
+     * @return TablaAdminEntity
      */
     public function listarDetalleTabla(string  $idTabla)
     {
         $response = BusFacade::process(new ObtenerDetalleTablaCommand($idTabla));
-        return ApiResponse::success('Listar Tablas', $response);
+        return ApiResponse::success('Detalle Tabla', $response);
+    }
+
+    /**
+     * Crear Registro en Tabla
+     * @return TablaAdminEntity
+     */
+    public function addRegistroTabla(Request $request, string  $idTabla)
+    {
+        $command = new stdClass();
+        foreach ($request->all() as $key => $value){
+            $command->$key = $value;
+        }
+        unset($command->q);
+        $response = BusFacade::process(new CrearRegistroTablaCommand($idTabla, $command));
+        return ApiResponse::success('Crear Registro Tabla', $response);
     }
 
 }
