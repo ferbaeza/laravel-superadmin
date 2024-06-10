@@ -11,8 +11,10 @@ use Baezeta\Admin\Shared\ValueObjects\UuidValue;
 use Illuminate\Database\ConnectionResolverInterface;
 use Baezeta\Admin\Shared\DB\Domain\Entity\DBColumnaEntity;
 use Baezeta\Admin\Shared\DB\Domain\Entity\DBTablaAdminEntity;
+use Baezeta\Admin\Shared\DB\Domain\Entity\DBColumnasForeignEntity;
 use Baezeta\Admin\Shared\DB\Domain\Collection\DBColumnasCollection;
 use Baezeta\Admin\Shared\DB\Domain\Collection\DBTablasAdminCollection;
+use Baezeta\Admin\Shared\DB\Domain\Collection\DBColumnasForeignCollection;
 use Baezeta\Admin\Shared\DB\Domain\Interfaces\DataBaseRepositoryInterfaces;
 use Baezeta\Admin\Shared\Laravel\Eloquent\SuperAdminDatabaseTablas\SuperAdminDatabaseTablasModel;
 
@@ -122,20 +124,19 @@ class DataBaseRepository implements DataBaseRepositoryInterfaces
                 columnas: $columnasCollection
             );
             collect(Schema::getColumns($table['nombre']))->map(function ($nombreColumna) use (&$columnasCollection, $table) {
+                $foreignCollenction = new DBColumnasForeignCollection();
                 $tieneClaveForanea = $this->tieneClaveForanea($table['nombre'], $nombreColumna['name']);
-                    
                 if ($tieneClaveForanea) {
                         $referenciaClaveForanea = $this->obtenerReferenciaClaveForanea($table['nombre'], $nombreColumna['name']);
-                        // dd($referenciaClaveForanea);
 
 
-                        $a = new stdClass();
-                        $a->columnaForeignKey = $nombreColumna['name'];
-                        $a->tabla = $referenciaClaveForanea->tabla;
-                        $a->tablaReferenciada = $referenciaClaveForanea->tabla_referenciada;
-                        $a->columna = $referenciaClaveForanea->columna_referenciada;
-
-                        dump($a);
+                        $foreignEntity = new DBColumnasForeignEntity(
+                            fromTabla : $referenciaClaveForanea->tabla,
+                            columnaForeignKey : $nombreColumna['name'],
+                            tablaReferencesTo : $referenciaClaveForanea->tabla_referenciada,
+                            columnaReferencesTo : $referenciaClaveForanea->columna_referenciada,
+                        );
+                     $foreignCollenction->push($foreignEntity);
                     }
 
 
@@ -144,7 +145,7 @@ class DataBaseRepository implements DataBaseRepositoryInterfaces
                     typeName: $nombreColumna['type_name'],
                     type: $nombreColumna['type'],
                     nullable: $nombreColumna['nullable'] == 1 ? true : false,
-                    foreign : $tieneClaveForanea
+                    foreign : $foreignCollenction
                 ));
             });
             $tablasColllection->push($tablaEntidad);

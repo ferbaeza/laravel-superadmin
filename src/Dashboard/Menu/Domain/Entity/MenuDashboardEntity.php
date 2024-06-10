@@ -11,6 +11,7 @@ class MenuDashboardEntity extends EntityBase implements JsonSerializable
     public function __construct(
         public readonly string $id,
         public readonly string $nombre,
+        public readonly ?string $icon,
         public readonly ?string $url,
         public readonly string $codigo,
         public readonly ?string $codigoPadre,
@@ -24,6 +25,7 @@ class MenuDashboardEntity extends EntityBase implements JsonSerializable
         return [
             'id' => $this->id,
             'nombre' => $this->nombre,
+            'icon' => $this->icon,
             'url' => $this->url,
             'codigo' => $this->codigo,
             'codigoPadre' => $this->codigoPadre,

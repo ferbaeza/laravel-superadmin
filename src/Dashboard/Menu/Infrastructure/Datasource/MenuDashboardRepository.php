@@ -28,6 +28,7 @@ class MenuDashboardRepository implements MenuDashboardRepositoryInterface
                     new MenuDashboardEntity(
                         $value['id'],
                         $value['nombre'],
+                        $value['icon'],
                         $value['route'],
                         $value['codigo'],
                         $value['codigo_padre'],
@@ -48,6 +49,7 @@ class MenuDashboardRepository implements MenuDashboardRepositoryInterface
                     new MenuDashboardEntity(
                         $value['id'],
                         $value['nombre'],
+                        $value['icon'],
                         $value['route'],
                         $value['codigo'],
                         $value['codigo_padre'],

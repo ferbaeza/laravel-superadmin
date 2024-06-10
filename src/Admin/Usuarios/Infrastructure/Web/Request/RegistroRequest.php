@@ -12,7 +12,7 @@ class RegistroRequest extends BaseRequest
             'nombre' => 'required|string',
             'email' => 'required|email',
             'password' => 'required',
-            'codigoRole' => 'nullable|integer',
+            'codigoRole' => 'bail|nullable|integer',
         ];
     }
 }

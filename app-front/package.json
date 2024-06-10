@@ -21,7 +21,7 @@
     "start": "react-scripts start",
     "build-react": "react-scripts build",
     "remove-build": "rm -rf ../public/*",
-    "build": "npm run remove-build && react-scripts build && mv build/* ../public/",
+    "build": "npm run remove-build && react-scripts build && cp -r build/* ../public/",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

@@ -3,6 +3,7 @@
 namespace Baezeta\Admin\Shared\DB\Domain\Entity;
 
 use JsonSerializable;
+use Baezeta\Admin\Shared\DB\Domain\Collection\DBColumnasForeignCollection;
 
 class DBColumnaEntity implements JsonSerializable
 {
@@ -11,7 +12,7 @@ class DBColumnaEntity implements JsonSerializable
         public readonly string $typeName,
         public readonly string $type,
         public readonly bool $nullable,
-        public readonly bool $foreign = false,
+        public readonly DBColumnasForeignCollection $foreign,
     ) {
     }
 
