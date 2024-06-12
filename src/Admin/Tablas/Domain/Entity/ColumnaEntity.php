@@ -3,6 +3,7 @@
 namespace Baezeta\Admin\Admin\Tablas\Domain\Entity;
 
 use JsonSerializable;
+use Baezeta\Admin\Admin\Tablas\Domain\Collection\ForeignColumnCollection;
 
 class ColumnaEntity implements JsonSerializable
 {
@@ -11,6 +12,7 @@ class ColumnaEntity implements JsonSerializable
         public readonly string $typeName,
         public readonly string $type,
         public readonly bool $nullable,
+        public ?ForeignColumnEntity $foreign
     ) {
     }
 
@@ -20,7 +22,8 @@ class ColumnaEntity implements JsonSerializable
             'name' => $this->name,
             'typeName' => $this->typeName,
             'type' => $this->type,
-            'nullable' => $this->nullable
+            'nullable' => $this->nullable,
+            'foreign' => $this->foreign ?? null
         ];
     }
 }

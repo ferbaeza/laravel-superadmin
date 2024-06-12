@@ -90,7 +90,12 @@ class DataBaseRepository implements DataBaseRepositoryInterfaces
             AND kcu.table_name = ?; 
     ", [$nombreTabla]);
 
-        return $result[0] ?? null;
+        foreach ($result as $key => $value) {
+            if ($value->columna == $nombreColumna) {
+                return $value;
+            }
+        }
+  
     }
 
     public function tieneClaveForanea($nombreTabla, $nombreColumna)
@@ -117,18 +122,21 @@ class DataBaseRepository implements DataBaseRepositoryInterfaces
 
         $tablesSQL->each(function ($table) use (&$tablasColllection) {
             $columnasCollection = new DBColumnasCollection();
+            
             $tablaEntidad = new DBTablaAdminEntity(
                 id: UuidValue::create(),
                 nombre: $table['nombre'],
                 size: $table['size'],
                 columnas: $columnasCollection
             );
-            collect(Schema::getColumns($table['nombre']))->map(function ($nombreColumna) use (&$columnasCollection, $table) {
-                $foreignCollenction = new DBColumnasForeignCollection();
-                $tieneClaveForanea = $this->tieneClaveForanea($table['nombre'], $nombreColumna['name']);
-                if ($tieneClaveForanea) {
-                        $referenciaClaveForanea = $this->obtenerReferenciaClaveForanea($table['nombre'], $nombreColumna['name']);
+            $columnas =  collect(Schema::getColumns($table['nombre']));
 
+            $columnas->each(function ($nombreColumna) use (&$columnasCollection, $table) {
+                $tieneClaveForanea = $this->tieneClaveForanea($table['nombre'], $nombreColumna['name']);
+
+                if ($tieneClaveForanea) {
+                    $referenciaClaveForanea = $this->obtenerReferenciaClaveForanea($table['nombre'], $nombreColumna['name']);
+                    // dump($table['nombre'], $nombreColumna['name'], $referenciaClaveForanea);
 
                         $foreignEntity = new DBColumnasForeignEntity(
                             fromTabla : $referenciaClaveForanea->tabla,
@@ -136,16 +144,14 @@ class DataBaseRepository implements DataBaseRepositoryInterfaces
                             tablaReferencesTo : $referenciaClaveForanea->tabla_referenciada,
                             columnaReferencesTo : $referenciaClaveForanea->columna_referenciada,
                         );
-                     $foreignCollenction->push($foreignEntity);
                     }
-
 
                     $columnasCollection->push(new DBColumnaEntity(
                     name: $nombreColumna['name'],
                     typeName: $nombreColumna['type_name'],
                     type: $nombreColumna['type'],
                     nullable: $nombreColumna['nullable'] == 1 ? true : false,
-                    foreign : $foreignCollenction
+                    foreign : $foreignEntity ?? null
                 ));
             });
             $tablasColllection->push($tablaEntidad);
