@@ -62,6 +62,7 @@ class AdminTablasRepository implements AdminTablasRepositoryInterface
 
             $columnas = json_decode($table->columnas, true);
             foreach ($columnas as $columna) {
+                $foreign = null;
                 if ($columna['foreign'] != null){
                     $foreign = new ForeignColumnEntity(
                         tablaReferencesTo: $columna['foreign']['tablaReferencesTo'],
@@ -74,7 +75,7 @@ class AdminTablasRepository implements AdminTablasRepositoryInterface
                     type: $columna['type'],
                     nullable: $columna['nullable'] == 1 ? true : false,
                     typeName: $columna['typeName'],
-                    foreign: $foreign ?? null
+                    foreign: $foreign
                 ));
             }
 

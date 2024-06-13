@@ -20,12 +20,9 @@ use Baezeta\Admin\Shared\Laravel\Eloquent\SuperAdminDatabaseTablas\SuperAdminDat
 
 class DataBaseRepository implements DataBaseRepositoryInterfaces
 {
-    // private ConnectionResolverInterface $connections;
-
-    public function insert(string $sql, array $valores) : void
+    public function insert(string $sql, array $valores) : bool
     {
-        dd($sql, $valores);
-        DB::insert($sql, $valores);
+        return DB::insert($sql, $valores);
     }
 
     public function getDataTable(string $table): array
@@ -133,10 +130,9 @@ class DataBaseRepository implements DataBaseRepositoryInterfaces
 
             $columnas->each(function ($nombreColumna) use (&$columnasCollection, $table) {
                 $tieneClaveForanea = $this->tieneClaveForanea($table['nombre'], $nombreColumna['name']);
-
+                $foreignEntity = null;
                 if ($tieneClaveForanea) {
                     $referenciaClaveForanea = $this->obtenerReferenciaClaveForanea($table['nombre'], $nombreColumna['name']);
-                    // dump($table['nombre'], $nombreColumna['name'], $referenciaClaveForanea);
 
                         $foreignEntity = new DBColumnasForeignEntity(
                             fromTabla : $referenciaClaveForanea->tabla,
@@ -151,7 +147,7 @@ class DataBaseRepository implements DataBaseRepositoryInterfaces
                     typeName: $nombreColumna['type_name'],
                     type: $nombreColumna['type'],
                     nullable: $nombreColumna['nullable'] == 1 ? true : false,
-                    foreign : $foreignEntity ?? null
+                    foreign : $foreignEntity
                 ));
             });
             $tablasColllection->push($tablaEntidad);
