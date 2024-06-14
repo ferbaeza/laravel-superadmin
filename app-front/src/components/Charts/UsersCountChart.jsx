@@ -2,7 +2,7 @@ import React from 'react';
 import './styles/countCharts.scss';
 
 
-function UsersCountChart() {
+function UsersCountChart({totalUsersData = 0}) {
 
     return (
         <div className="chart">
@@ -12,7 +12,7 @@ function UsersCountChart() {
                     <span>Usuarios</span>
                 </div>
                 <div className="chart-count">
-                    <h2>15</h2>
+                    <h2>{totalUsersData}</h2>
                 </div>
             </div>
         </div>

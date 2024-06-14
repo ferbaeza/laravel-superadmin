@@ -20,8 +20,6 @@ use Baezeta\Admin\Shared\Laravel\Eloquent\SuperAdminDatabaseTablas\SuperAdminDat
 
 class DataBaseRepository implements DataBaseRepositoryInterfaces
 {
-    // private ConnectionResolverInterface $connections;
-
     public function insert(string $sql, array $valores) : void
     {
         dd($sql, $valores);
@@ -48,24 +46,11 @@ class DataBaseRepository implements DataBaseRepositoryInterfaces
 
     public function getDatabaseTables(): Collection
     {
-        // $this->connections = app()->make(ConnectionResolverInterface::class);
-        // $connection = $this->connections->connection();
-        // $schema = $connection->getSchemaBuilder();
-
         return collect(Schema::getTables())->map(fn ($table) => [
             'nombre' => $table['name'],
             'size' => $table['size'],
         ]);
-        // return ($this->tables($schema));
     }
-
-    // protected function tables(Builder $schema): Collection
-    // {
-    // return collect($schema->getTables())->map(fn ($table) => [
-    //     'nombre' => $table['name'],
-    //     'size' => $table['size'],
-    // ]);
-    // }
 
     public function obtenerReferenciaClaveForanea($nombreTabla, $nombreColumna)
     {

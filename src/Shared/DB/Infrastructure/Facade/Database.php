@@ -2,6 +2,7 @@
 
 namespace Baezeta\Admin\Shared\DB\Infrastructure\Facade;
 
+use Illuminate\Support\Collection;
 use Baezeta\Admin\Shared\DB\Infrastructure\Datasource\DataBaseRepository;
 
 class Database
@@ -14,7 +15,7 @@ class Database
         return new DataBaseRepository();
     }
 
-    public static function getDatabaseTables(): array
+    public static function getDatabaseTables(): Collection
     {
         return self::repo()->getDatabaseTables();
     }

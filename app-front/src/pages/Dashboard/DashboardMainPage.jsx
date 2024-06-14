@@ -5,6 +5,7 @@ import axiosClient from '../../shared/http/AxiosClient';
 import UsersList from '../../components/Charts/UsersList';
 import UsersCountChart from '../../components/Charts/UsersCountChart';
 import TablasCountChart from '../../components/Charts/TablasCountChart';
+import TablasList from '../../components/Charts/TablasList';
 
 function  DashboardMainPage() {
 
@@ -18,7 +19,7 @@ function  DashboardMainPage() {
   async function fetchUsersData() {
     const response = await axiosClient.get(`dashboard`, {});
     const data = response.data.data;
-    console.log('data', data);
+    // console.log('data', data);
 
     setUsuarios(data.usuarios.data);
     setTotalUsuarios(data.cantidadUsuarios);
@@ -38,18 +39,17 @@ function  DashboardMainPage() {
       <div className="dashboard-boxes">
         <div className="box box1">
           <div className="subbox-1">
-            <UsersCountChart />
+            <UsersCountChart totalUsersData={totalUsuarios}/>
           </div>
           <div className="subbox-1">
-            <TablasCountChart />
+            <TablasCountChart totalTablasData={totalTablas} />
           </div>
-          {/* <UsersCharts usersData={usuarios} /> */}
         </div>
         <div className="box box2">
           <UsersList usersData={usuarios} />
         </div>
         <div className="box box3">
-          <UsersList />
+          <TablasList tablasData={tablas} />
         </div>
         <div className="box box4">box box4</div>
         <div className="box box5">box box5</div>

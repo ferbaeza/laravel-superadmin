@@ -11,7 +11,6 @@ import axiosClient from '../../shared/http/AxiosClient';
 function Sidebar() {
   let navigate = useNavigate();
   const publicPath = process.env.PUBLIC_URL + '/icons/';
-  const imageExtension = '.svg';
 
   const handleCardClick = (name) => {
     console.log('name', name);
@@ -40,11 +39,12 @@ function Sidebar() {
           <div className="menu">
             <div className="menu-secciones">
               <div className="seccion-titulo" onClick={() => {
+                if (item.codigoPadre !== null) {
                   handleCardClick(`${item.url}`);
-              }}>
+                }
+              }} key={item.id}>
                 <span>
-                  <img className='logo-sidebar' src={publicPath + item.icon + imageExtension} alt="image" />
-                  {/* <SidebarIcon /> */}
+                  <img className='logo-sidebar' src={publicPath + item.icon} alt="image" />
                 </span>
                 <span className='span-list-titulo'>{item.nombre}</span>
             </div>
@@ -52,9 +52,10 @@ function Sidebar() {
                 {item.subMenus?.data.map((child) => (
                   <div className="list-hijo" onClick={() => {
                     handleCardClick(`${child.url}`);
-                  }}>
+                  }}
+                    key={child.id}>
                     <span>
-                      {/* <SidebarIcon /> */}
+                      <img className='logo-sidebar' src={publicPath + child.icon} alt="image" />
                     </span>
                     <span className="menu-hijos">
                       {child.nombre}

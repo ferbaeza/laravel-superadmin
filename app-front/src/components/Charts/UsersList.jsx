@@ -3,9 +3,6 @@ import './styles/listCharts.scss';
 
 
 function UsersList({usersData =[]}) {
-
-    console.log('usersData', usersData);
-
     return (
         <div className="users">
             <h1>UsersCharts</h1>
