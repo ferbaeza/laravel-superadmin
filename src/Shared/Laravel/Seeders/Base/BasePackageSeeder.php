@@ -22,7 +22,7 @@ class BasePackageSeeder extends Seeder
             MenuSideBarSeeder::class,
         ]);
         $command = new SincronizarTablasDBCommand();
-        $usuarioNuevo =  app()->make(SincronizarTablasDBCommandHandler::class)->run($command);
+        app()->make(SincronizarTablasDBCommandHandler::class)->run($command);
 
     }
 }

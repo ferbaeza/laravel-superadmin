@@ -3,6 +3,7 @@
 namespace Baezeta\Admin\Admin\Tablas\Infrastructure\Datasource;
 
 use stdClass;
+use Baezeta\Admin\Shared\Exceptions\Tablas\ErrorRegistroTablaException;
 use Baezeta\Admin\Admin\Tablas\Domain\Interfaces\TablasRepositoryInterface;
 use Baezeta\Admin\Shared\DB\Domain\Interfaces\DataBaseRepositoryInterfaces;
 
@@ -17,10 +18,15 @@ final class TablasRepository implements TablasRepositoryInterface
     {
         $columnas = array_keys((array)$entidad->columnas);
         $valores = array_values((array)$entidad->columnas);
-
+        dd($valores);
         $sql = "INSERT INTO $entidad->tabla (".implode(',', $columnas).") VALUES (".implode(',', array_fill(0, count($columnas), '?')).")";
 
-        $this->dataBaseRepository->insert($sql , $valores);
+        $grabadoCorrectamente = $this->dataBaseRepository->insert($sql, $valores);
+
+        if (!$grabadoCorrectamente) {
+
+            throw ErrorRegistroTablaException::drop($entidad->tabla);
+        }
         return $entidad;
     }
 

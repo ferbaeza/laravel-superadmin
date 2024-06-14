@@ -34,8 +34,6 @@ class CrearRegistroTablaCommandHandler
             return $columna->name;
         }, $entidad->columnas->toArray());
 
-        // dd($columnas, $tableInputs);
-
         foreach ($tableInputs as $columna => $value) {
             if (!in_array($columna, $columnas)) {
                 throw ColumnaNoExisteException::drop($columna, $entidad->nombre);
