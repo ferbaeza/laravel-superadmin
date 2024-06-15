@@ -12,7 +12,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        flex-direction: column;
+        flex-direction: row;
         gap: $gap;
 
 
@@ -21,6 +21,12 @@
             align-items: flex-start;
             justify-content: flex-start;
             gap: $gap;
+            .logo-sidebar {
+                    width: 40px;
+                    height: 40px;
+                    color: white;
+                    fill: white;
+                }
         }
         .chart-count{
             font-size: larger;

@@ -51,10 +51,14 @@
                 grid-auto-rows: minmax(150px, auto);
                 grid-auto-flow: dense;
                 .subbox-1{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                     box-shadow: $soft 1px 3px 7px;
                     margin: 10px;
                     padding: 5px;
                     border-radius: 7px;
+                    max-height: 150px;
                     gap: $gap
                 }
             }

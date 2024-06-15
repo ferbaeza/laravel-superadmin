@@ -60,10 +60,10 @@ function  DashboardMainPage() {
           box box4
           <TablasPieChart tablasData={tablas} />
           </div>
-        <div className="box box6">box box6</div>
-        {/* <div className="box box7">box box7</div>
-        <div className="box box8">box box8</div>
-        <div className="box box9">box box9</div> */}
+        <div className="box box6">
+          <UsersList usersData={usuarios} />
+
+        </div>
       </div>
     </div>
   );
