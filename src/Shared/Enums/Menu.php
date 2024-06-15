@@ -19,7 +19,7 @@ enum Menu : string
     public function getMenuData(): array
     {
         return match ($this) {
-            self::APP => ['nombre' => (config('package.nombre') ?? 'AppAdmin'),'icon' => 'element.svg' , 'route' => '/main','codigo' => '000', 'codigo_padre' => null],
+            self::APP => ['nombre' => (config('package.nombre') ?? 'AppAdmin'),'icon' => 'element.svg' , 'route' => '/','codigo' => '000', 'codigo_padre' => null],
 
 
             self::MENU => ['nombre' => 'Menu', 'icon' => 'window-sidebar.svg', 'route' => '/main', 'codigo' => '001', 'codigo_padre' => null],

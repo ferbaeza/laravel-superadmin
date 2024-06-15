@@ -6,6 +6,8 @@ import UsersList from '../../components/Charts/UsersList';
 import UsersCountChart from '../../components/Charts/UsersCountChart';
 import TablasCountChart from '../../components/Charts/TablasCountChart';
 import TablasList from '../../components/Charts/TablasList';
+import TablasBarChart from '../../components/Charts/TablasBarChart';
+import TablasPieChart from '../../components/Charts/TablasPieChart';
 
 function  DashboardMainPage() {
 
@@ -51,8 +53,13 @@ function  DashboardMainPage() {
         <div className="box box3">
           <TablasList tablasData={tablas} />
         </div>
-        <div className="box box4">box box4</div>
-        <div className="box box5">box box5</div>
+        <div className="box box5">
+          <TablasBarChart tablasData={tablas} />
+        </div>
+        <div className="box box4">
+          box box4
+          <TablasPieChart tablasData={tablas} />
+          </div>
         <div className="box box6">box box6</div>
         {/* <div className="box box7">box box7</div>
         <div className="box box8">box box8</div>

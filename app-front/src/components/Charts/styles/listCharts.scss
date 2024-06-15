@@ -1,12 +1,21 @@
 @import "../../../styles/variables.scss";
 
-.users{
+.lists{
     width: 100%;
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
     flex-direction: column;
     gap: $gap;
+    max-height: 100%;
+    /* Ajusta esto a la altura deseada */
+    overflow-y: auto;
+    scrollbar-width: none;
+    
+    /* Para navegadores basados en WebKit como Chrome y Safari */
+    .lists::-webkit-scrollbar {
+        display: none;
+    }
 
     .user-data{
         width: 100%;

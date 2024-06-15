@@ -1,9 +1,6 @@
 import './sidebar.scss';
 import { useNavigate } from 'react-router';
 import { useEffect, useState } from 'react';
-// import { UserIcon } from '../../icons/usersIcon';
-// import { Dashboard } from '../../icons/dashboard';
-// import { SidebarIcon } from '../../icons/sidebarIcon';
 import axiosClient from '../../shared/http/AxiosClient';
 
 
@@ -30,21 +27,18 @@ function Sidebar() {
     fetchMenuData();
   }, []);
 
-  console.log('menu', menu);
-  console.log("title", title);
-
   return (
-    <div className="sidebar">
+    <div className="sidebar" key={title}>
         {menu.map((item) => (
           <div className="menu">
             <div className="menu-secciones">
               <div className="seccion-titulo" onClick={() => {
-                if (item.codigoPadre !== null) {
+                if (item.codigoPadre !== null || item.codigo === '000') {
                   handleCardClick(`${item.url}`);
                 }
               }} key={item.id}>
                 <span>
-                  <img className='logo-sidebar' src={publicPath + item.icon} alt="image" />
+                  <img className='logo-sidebar' src={publicPath + item.icon} alt={item.icon} />
                 </span>
                 <span className='span-list-titulo'>{item.nombre}</span>
             </div>
@@ -55,7 +49,7 @@ function Sidebar() {
                   }}
                     key={child.id}>
                     <span>
-                      <img className='logo-sidebar' src={publicPath + child.icon} alt="image" />
+                      <img className='logo-sidebar' src={publicPath + child.icon} alt={child.icon} />
                     </span>
                     <span className="menu-hijos">
                       {child.nombre}

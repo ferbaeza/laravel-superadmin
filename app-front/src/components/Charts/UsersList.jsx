@@ -1,27 +1,27 @@
-import React from 'react';
+import * as React from 'react';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import Avatar from '@mui/material/Avatar';
 import './styles/listCharts.scss';
 
 
-function UsersList({usersData =[]}) {
+export default function UserList({ usersData = [] }) {
     return (
-        <div className="users">
-            <h1>UsersCharts</h1>
-
-            {usersData && usersData.map((user)=>(
-                <div className="user-data" key={user.id}>
-                    <div className="user-name">
-                        <span>{user.name ?? "User-name"}</span>
-                    </div>
-                    <div className="user-email">
-                        <span>{user.email}</span>
-                    </div>
-                </div>
+        <List sx={{ width: '100%', maxWidth: 360, bgcolor: "whitesmoke" }}>
+            {usersData && usersData.map((user) => (
+            <ListItem>
+                <ListItemAvatar>
+                        <Avatar sx={{ bgcolor: '#384256'}}>
+                        {user.name[0]}
+                    </Avatar>
+                </ListItemAvatar>
+                <ListItemText primary={user.name ?? 'User--Name'} secondary={user.email} />
+            </ListItem>
             ))}
-        </div>
+        </List>
     );
 }
 
-
-
-export default UsersList;
 

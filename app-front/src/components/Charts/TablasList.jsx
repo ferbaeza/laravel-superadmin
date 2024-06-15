@@ -1,39 +1,31 @@
-import React from 'react';
+import './styles/listCharts.scss';
+import * as React from 'react';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import Avatar from '@mui/material/Avatar';
 import './styles/listCharts.scss';
 
 
-function TablasList(/* {usersData =[]} */) {
+export default function TablasList({ tablasData = [] }) {
 
-    // console.log('usersData', usersData);
-/*     usersData && usersData.map((user)=>{
-        console.log('id', user.id);
-        console.log('email', user.email);
-    }) */
+    const publicPath = process.env.PUBLIC_URL + '/icons/';
+
     return (
-        <div className="tablas">
-            <h1>TablasList</h1>
-            <div className="tabla-data" key='id'>
-                <div className="tabla-name">
-                    <span>tabla-name</span>
-                </div>
-                <div className="tabla-email">
-                    <span>tabla-email</span>
-                </div>
-            </div>
-
-            <div className="tabla-data" key='id'>
-                <div className="tabla-name">
-                    <span>tabla-name</span>
-                </div>
-                <div className="tabla-email">
-                    <span>tabla-email</span>
-                </div>
-            </div>
+        <div className="lists">
+            <List sx={{ width: '100%', maxWidth: 360, bgcolor: "whitesmoke" }}>
+                {tablasData && tablasData.map((tabla) => (
+                    <ListItem>
+                        <ListItemAvatar>
+                            <Avatar alt={tabla.id} src={publicPath + 'database-fill-add-dark.svg'}>
+                            </Avatar>
+                        </ListItemAvatar>
+                        <ListItemText primary={tabla.nombre} secondary={tabla.size} />
+                    </ListItem>
+                ))}
+            </List>
         </div>
     );
 }
-
-
-
-export default TablasList;
 

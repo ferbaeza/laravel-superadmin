@@ -2,11 +2,13 @@
 
 .dashboard{
     width: 100%;
-    height: 100vh;
+    max-height: 100vh;
 
     .dashboard-main{
         width: 100%;
-        height: 100vh;
+        max-height: 100vh;
+        overflow-y: auto;
+        scrollbar-width: none;
         
         .dashboard-boxes{
             display: grid;
@@ -15,12 +17,13 @@
             padding: 1%;
             grid-auto-rows: minmax(150px, auto);
             grid-auto-flow: dense;
-
+            gap: $gap;
+            
             @media (max-width: 1224px) {
                     grid-template-columns: repeat(3, 1fr);
                 }
             
-            @media (max-width: 1024px) {
+                @media (max-width: 1024px) {
                 grid-template-columns: repeat(2, 1fr);
             }
         
@@ -33,12 +36,15 @@
                 margin: 10px;
                 padding: 5px;
                 border-radius: 7px;
-                gap : $gap
+                gap : $gap;
+                max-height: 500px;
             }
             
             .box1 {
                 box-shadow: none;
                 display: grid;
+                grid-column: span 2;
+                grid-row: span 1;
                 grid-template-columns: repeat(2, 1fr);
                 // border: solid 1px $soft;
                 // padding: 1%;
@@ -56,11 +62,28 @@
             .box3{
                 grid-column: span 1;
                 grid-row: span 3;
+                max-height: 550px;
             }
 
             .box2 {
                 grid-column: span 1;
                 grid-row: span 3;
+                max-height: 550px;
+            }
+            .box5 {
+                grid-column: span 4;
+                grid-row: span 1;
+                max-height: 300px;
+            }
+            .box4 {
+                grid-column: span 1;
+                grid-row: span 2;
+                max-height: 300px;
+            }
+            .box6 {
+                grid-column: span 1;
+                grid-row: span 2;
+                max-height: 300px;
             }
         }
     }
