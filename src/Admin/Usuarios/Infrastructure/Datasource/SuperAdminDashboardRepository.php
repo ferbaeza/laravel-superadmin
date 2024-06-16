@@ -2,9 +2,9 @@
 
 namespace Baezeta\Admin\Admin\Usuarios\Infrastructure\Datasource;
 
-use Illuminate\Support\Facades\Auth;
 use Baezeta\Admin\Shared\ValueObjects\UuidValue;
 use Baezeta\Admin\Admin\Usuarios\Domain\Entity\SuperAdminUser;
+use Baezeta\Admin\Admin\Usuarios\Domain\Collection\UsuariosAplicacionCollection;
 use Baezeta\Admin\Shared\Laravel\Eloquent\SuperAdminUsuarios\SuperAdminUsuariosModel;
 use Baezeta\Admin\Admin\Usuarios\Domain\Interfaces\SuperAdminDashboardRepositoryInterface;
 
@@ -61,4 +61,9 @@ class SuperAdminDashboardRepository implements SuperAdminDashboardRepositoryInte
         return $password === (decryptPass($usuario->password));
     }
 
+    public function getCollection(): UsuariosAplicacionCollection
+    {
+        $usuarios = new UsuariosAplicacionCollection();
+        return $usuarios;
+    }
 }

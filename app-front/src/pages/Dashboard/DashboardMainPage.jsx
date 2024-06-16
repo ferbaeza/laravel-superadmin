@@ -57,12 +57,15 @@ function  DashboardMainPage() {
           <TablasBarChart tablasData={tablas} />
         </div>
         <div className="box box4">
-          box box4
           <TablasPieChart tablasData={tablas} />
           </div>
         <div className="box box6">
-          <UsersList usersData={usuarios} />
-
+          <div className="span-co">
+            <span>Ultimos Usuarios Conectados</span>
+          </div>
+            <div className="lists-co">
+              <UsersList usersData={usuarios} />
+            </div>
         </div>
       </div>
     </div>

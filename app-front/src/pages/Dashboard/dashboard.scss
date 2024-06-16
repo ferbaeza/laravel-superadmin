@@ -88,6 +88,48 @@
                 grid-column: span 1;
                 grid-row: span 2;
                 max-height: 300px;
+                .span-co{
+                    height: 10%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+                    font-size: 1rem;
+                    margin-top: 5px;
+                    position: relative;
+                }
+                .lists-co{
+                    width: 100%;
+                    height: 90%;
+                    display: flex;
+                    align-items: flex-start;
+                    justify-content: flex-start;
+                    flex-direction: column;
+                    gap: $gap;
+                    max-height: 100%;
+                    /* Ajusta esto a la altura deseada */
+                    overflow-y: auto;
+                    scrollbar-width: none;
+                    
+                    /* Para navegadores basados en WebKit como Chrome y Safari */
+                    .lists-co::-webkit-scrollbar {
+                        display: none;
+                    }
+                
+                    .user-data-co{
+                        width: 100%;
+                        padding: 5px;
+                        // background-color: $soft;
+                        color: $dark-color;
+                        display: flex;
+                        align-items: flex-start;
+                        justify-content: space-between;
+                        flex-direction: column;
+                        gap: $gap;
+                        border: $solid;
+                        border-radius: 5px;
+                    }
+                }
             }
         }
     }

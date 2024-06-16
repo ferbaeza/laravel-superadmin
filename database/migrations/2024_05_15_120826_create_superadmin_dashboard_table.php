@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('nombre')->nullable();
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('avatar')->nullable();
             $table->integer('estado')->default(0);
 
             $table->foreignUuid('fk_role_id')

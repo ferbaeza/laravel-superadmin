@@ -2,10 +2,11 @@
 
 namespace Baezeta\Admin\Shared\Laravel\Seeders\Dashboard;
 
-use Baezeta\Admin\Shared\Enums\Roles;
 use Illuminate\Database\Seeder;
+use Baezeta\Admin\Shared\Enums\Roles;
 use Baezeta\Admin\Shared\Laravel\Eloquent\SuperAdminRoles\SuperAdminRolesModel;
 use Baezeta\Admin\Shared\Laravel\Eloquent\SuperAdminUsuarios\SuperAdminUsuariosModel;
+use Baezeta\Admin\Shared\Laravel\Eloquent\SuperAdminUsuarios\SuperAdminUsuariosFactory;
 
 class SuperAdminUsuariosSeeder extends Seeder
 {
@@ -15,9 +16,9 @@ class SuperAdminUsuariosSeeder extends Seeder
     public function run(): void
     {
         $defaultRole = $this->getDefaultRole();
-        $admin = ['nombre' => 'Fer Baeza', 'email' => 'fbaezahurtado@gmail.com', 'password' => cryptPass('1008'), 'fk_role_id' => $this->getRoleAdmin()];
+        $admin = ['nombre' => 'Fer Baeza', 'email' => 'fbaezahurtado@gmail.com', 'password' => cryptPass('1008'), 'fk_role_id' => $this->getRoleAdmin(), 'avatar' => SuperAdminUsuariosFactory::AVATAR_MAN];
         SuperAdminUsuariosModel::factory($admin)->create();
-        SuperAdminUsuariosModel::factory(['fk_role_id' => $defaultRole])->count(2)->create();
+        SuperAdminUsuariosModel::factory(['fk_role_id' => $defaultRole])->count(8)->create();
     }
 
     public function getRoleAdmin()

@@ -10,6 +10,7 @@ class UsuarioAdminEntity implements JsonSerializable
         public readonly string $id,
         public readonly ?string $name,
         public readonly string $email,
+        public readonly string $avatar,
     ) {
     }
 
@@ -19,6 +20,7 @@ class UsuarioAdminEntity implements JsonSerializable
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
+            'avatar' => $this->avatar,
         ];
     }
 }

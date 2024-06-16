@@ -4,7 +4,8 @@ import {
     BarChart,
     Bar,
     ResponsiveContainer,
-    Tooltip
+    Tooltip,
+    Rectangle
 } from 'recharts';
 
 
@@ -15,8 +16,10 @@ export default function TablasBarChart({ tablasData = [] }) {
         <div className="tablasbar">
             <ResponsiveContainer width="100%" height="100%">
                 <BarChart width={150} height={40} data={tablasData}>
-                    <Bar dataKey="size" fill="#8884d8" displayName='nombre'/>
-                    <Tooltip formatter={(value, name, props) => [value + '_Mb', `Tabla: ${props.payload.nombre}`]} />
+                    <Bar dataKey="size" fill='#384256' displayName='nombre' activeBar={<Rectangle fill="pink" stroke="blue" />} />
+                    <Tooltip
+                        formatter={(value, name, props) => [value + '_Mb', `Tabla: ${props.payload.nombre}`]} 
+                    />
 
                 </BarChart>
             </ResponsiveContainer>

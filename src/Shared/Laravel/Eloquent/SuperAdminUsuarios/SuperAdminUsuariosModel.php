@@ -19,6 +19,7 @@ class SuperAdminUsuariosModel extends Model
         'nombre',
         'email',
         'password',
+        'avatar',
         'estado',
         'fk_role_id',
         'last_activity',

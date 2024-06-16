@@ -31,15 +31,9 @@ class DataBaseRepository implements DataBaseRepositoryInterfaces
         return $dataSQL;
     }
 
-    public function getDatabaseTablesFromDB(): array
+    public function getDatabaseInformationColumnFromDB(string $tabla): Collection
     {
-        $tablesSQL = DB::select("
-            SELECT *
-            FROM information_schema.tables
-            WHERE table_schema = 'public'
-            AND table_type = 'BASE TABLE'
-        ");
-        return $tablesSQL;
+        return collect(Schema::getColumns($tabla));
     }
 
 

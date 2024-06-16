@@ -15,7 +15,7 @@ class UsuariosDashboardRepository implements UsuariosDashboardRepositoryInterfac
         $coleccion = new UsuariosAdminCollection();
 
         $usuarios->each(function ($usuario) use (&$coleccion) {
-            $coleccion->push(new UsuarioAdminEntity($usuario->id, $usuario->nombre, $usuario->email));
+            $coleccion->push(new UsuarioAdminEntity($usuario->id, $usuario->nombre, $usuario->email, $usuario->avatar));
         });
 
         return $coleccion;
