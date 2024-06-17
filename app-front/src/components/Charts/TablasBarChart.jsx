@@ -8,6 +8,8 @@ import {
     Rectangle
 } from 'recharts';
 
+import { capitalizar } from '../../shared/utils/StringsUtils.js';
+
 
 
 export default function TablasBarChart({ tablasData = [] }) {
@@ -18,7 +20,7 @@ export default function TablasBarChart({ tablasData = [] }) {
                 <BarChart width={150} height={40} data={tablasData}>
                     <Bar dataKey="size" fill='#384256' displayName='nombre' activeBar={<Rectangle fill="pink" stroke="blue" />} />
                     <Tooltip
-                        formatter={(value, name, props) => [value + '_Mb', `Tabla: ${props.payload.nombre}`]} 
+                        formatter={(value, name, props) => [value + '_Mb', capitalizar(`${props.payload.nombre}`)]} 
                     />
 
                 </BarChart>

@@ -5,6 +5,7 @@ namespace Baezeta\Admin\Admin\Shared\Bindings;
 use Baezeta\Admin\Admin\Role\Infrastructure\Bindings\RoleAdminBindings;
 use Baezeta\Admin\Admin\Tablas\Infrastructure\Bindings\AdminTablasRegisterBindings;
 use Baezeta\Admin\Admin\Usuarios\Infrastructure\Bindings\SuperAdminDashboardBindings;
+use Baezeta\Admin\Admin\Dashboard\DataTable\Infrastructure\Bindings\DatatableRegisterBindings;
 use Baezeta\Admin\Admin\Dashboard\Menu\Infrastructure\Bindings\AdminMenuDashboardRegisterBindings;
 
 class AdminBindings
@@ -16,6 +17,7 @@ class AdminBindings
             SuperAdminDashboardBindings::register(),
             AdminTablasRegisterBindings::register(),
             AdminMenuDashboardRegisterBindings::register(),
+            DatatableRegisterBindings::register()
         );
     }
 

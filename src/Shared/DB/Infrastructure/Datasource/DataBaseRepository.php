@@ -6,15 +6,12 @@ use stdClass;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Builder;
 use Baezeta\Admin\Shared\ValueObjects\UuidValue;
-use Illuminate\Database\ConnectionResolverInterface;
 use Baezeta\Admin\Shared\DB\Domain\Entity\DBColumnaEntity;
 use Baezeta\Admin\Shared\DB\Domain\Entity\DBTablaAdminEntity;
 use Baezeta\Admin\Shared\DB\Domain\Entity\DBColumnasForeignEntity;
 use Baezeta\Admin\Shared\DB\Domain\Collection\DBColumnasCollection;
 use Baezeta\Admin\Shared\DB\Domain\Collection\DBTablasAdminCollection;
-use Baezeta\Admin\Shared\DB\Domain\Collection\DBColumnasForeignCollection;
 use Baezeta\Admin\Shared\DB\Domain\Interfaces\DataBaseRepositoryInterfaces;
 use Baezeta\Admin\Shared\Laravel\Eloquent\SuperAdminDatabaseTablas\SuperAdminDatabaseTablasModel;
 

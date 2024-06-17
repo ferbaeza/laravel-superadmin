@@ -8,6 +8,7 @@ import {
     Tooltip
 } from 'recharts';
 
+import { capitalizar } from '../../shared/utils/StringsUtils.js';
 
 
 export default function TablasPieChart({ tablasData = [] }) {
@@ -32,7 +33,7 @@ export default function TablasPieChart({ tablasData = [] }) {
                             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                         ))}
                     </Pie>
-                    <Tooltip formatter={(value, name, props) => [value + '_Mb', `Tabla: ${props.payload.nombre}`]} />
+                    <Tooltip formatter={(value, name, props) => [value + '_Mb', capitalizar(`${props.payload.nombre}`)]} />
                 </PieChart>
             </ResponsiveContainer>
 

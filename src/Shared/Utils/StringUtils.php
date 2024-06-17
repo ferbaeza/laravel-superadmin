@@ -35,6 +35,11 @@ class StringUtils
         return str_replace('_', ' ', $cadena);
     }
 
+    public static function limpiarBarraMedia(string $cadena): string
+    {
+        return str_replace('-', ' ', $cadena);
+    }
+
     public static function formatoBusqueda(string $cadena): string
     {
         // $sinAcentos = self::sinAcentos($cadena);
@@ -65,5 +70,21 @@ class StringUtils
         $cadenaFormateada = explode(' ', str_replace(['-', ' '], '_', $cadena));
         $studlyWords = array_map(fn ($palabra) => mb_strtolower($palabra), $cadenaFormateada);
         return (implode('', $studlyWords));
+    }
+
+    public static function toSnakeCase(string $cadena): string
+    {
+        $cadenaFormateada = explode(' ', str_replace(['-', ' '], '_', $cadena));
+        $studlyWords = array_map(fn ($palabra) => mb_strtolower($palabra), $cadenaFormateada);
+        return (implode('_', $studlyWords));
+    }
+
+    public static function toTitle(string $cadena): string
+    {
+        $cadenaCapitalizada = self::capitalizar($cadena);
+        $cadenaBarraBaja = self::limpiarBarraBaja($cadenaCapitalizada);
+        $cadenaBarraMedia = self::limpiarBarraMedia($cadenaBarraBaja);
+        
+        return $cadenaBarraMedia;
     }
 }

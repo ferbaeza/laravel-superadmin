@@ -6,9 +6,8 @@ use Illuminate\Support\Facades\Route;
 use Baezeta\Admin\Admin\Role\Infrastructure\Web\RoleAdminRoutes;
 use Baezeta\Admin\Admin\Tablas\Infrastructure\Web\AdminTablasRoutes;
 use Baezeta\Admin\Admin\Usuarios\Infrastructure\Web\AdminUsuariosRoutes;
+use Baezeta\Admin\Admin\Dashboard\DataTable\Infrastructure\Web\DataTableRoutes;
 use Baezeta\Admin\Admin\Dashboard\Menu\Infrastructure\Web\AdminMenuDashboardRoutes;
-
-
 
 class AdminRoutes
 {
@@ -22,6 +21,7 @@ class AdminRoutes
                 AdminMenuDashboardRoutes::configure();
                 AdminTablasRoutes::configure();
                 RoleAdminRoutes::configure();
+                DataTableRoutes::configure();
             });
     }
 

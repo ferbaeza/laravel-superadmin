@@ -5,5 +5,14 @@
     height: 100vh;
     display: flex;
     align-items: center;
+    padding: 1%;
     justify-content: center;
+    /* Ajusta esto a la altura deseada */
+    overflow-y: auto;
+    scrollbar-width: none;
+
+    /* Para navegadores basados en WebKit como Chrome y Safari */
+    .lists::-webkit-scrollbar {
+        display: none;
+    }
 }

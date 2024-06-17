@@ -68,6 +68,9 @@ class PackageServiceProvider extends ServiceProvider
             __DIR__ . '/../app-front/public/icons' => $this->app->publicPath('icons'),
         ], 'package-config');
 
+        $this->publishes([
+            __DIR__ . '/../app-front/public/avatar' => $this->app->publicPath('avatar'),
+        ], 'package-config');
 
         $this->mergeConfigFrom(__DIR__ . '/../config/package.php', 'package');
     }

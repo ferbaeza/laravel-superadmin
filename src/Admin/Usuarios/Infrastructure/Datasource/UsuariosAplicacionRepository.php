@@ -16,7 +16,7 @@ class UsuariosAplicacionRepository implements UsuariosAplicacionRepositoryInterf
     public function getCollection(): UsuariosAplicacionCollection
     {
         $usuarios = new UsuariosAplicacionCollection();
-        $data = $this->dataBaseRepository->getDatabaseInformationColumnFromDB(config('package.database.usuarios'));
+        $data = $this->dataBaseRepository->getDatabaseInformationColumnFromDB(config('package.usuarios'));
         dd($data);
         return $usuarios;
     }
