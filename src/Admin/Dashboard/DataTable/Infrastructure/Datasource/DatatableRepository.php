@@ -21,12 +21,18 @@ class DatatableRepository implements DatatableRepositoryInterface
     public function getColumnasCollection(string $nombreTabla): ColumnasDatatableCollection
     {
         $columnas = new ColumnasDatatableCollection();
+
         $data = $this->dataBaseRepository->getDatabaseInformationColumnFromDB($nombreTabla);
-        $data->each(function ($item) use ($columnas) {
+
+        $fullSize = 1400;
+        $totalColumnas = ($data->count());
+
+
+        $data->each(function ($item) use ($columnas, $totalColumnas, $fullSize) {
             $entidad = new ColumnasDatatableEntity(
                 field: StringUtils::minusculas($item['name']),
                 headerName: StringUtils::toTitle($item['name']),
-                width: $item['name'] == 'id' ? 70 : 120
+                width: $item['name'] == 'id' ? 70 : $fullSize/$totalColumnas ,
             );
             $columnas->add($entidad);
         });

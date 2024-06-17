@@ -8,6 +8,7 @@ import Sidebar from '../../components/Sidebar/Sidebar';
 import RefreshPage from '../../components/Shared/Refresh';
 import DashboardOutlet from '../Dashboard/DashboardOutlet';
 import DashboardMainPage from '../Dashboard/DashboardMainPage';
+import UsuariosAdmin from '../UsuariosAdmin/UsuariosAdmin';
 
 
 function Layaout() {
@@ -25,6 +26,7 @@ function Layaout() {
               <Route path="refresh" element={<RefreshPage />} />
               <Route path="main" element={<DashboardMainPage />} />
               <Route path="usuarios" element={<Usuarios />} />
+              <Route path="admin-usuarios" element={<UsuariosAdmin />} />
               <Route path="tablas" element={<Tablas />} />
               <Route path="login" element={<Login />} />
             </Route>

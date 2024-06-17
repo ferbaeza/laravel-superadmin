@@ -1,0 +1,44 @@
+@import "../../styles/variables.scss";
+
+.user-drawer {
+    background-color: $main-color;
+    display: flex;
+    justify-content: flex-end;
+    align-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    
+    .drawer-form{
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: $gap;
+        background-color: $main-color;
+        padding: 1%;
+
+        .form-title{
+            color: $main;
+            font-size: 1rem;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            height: 15%;
+        }
+        .form-body{
+            width: 80%;
+            height: 70%;
+            display: flex;
+            flex-direction: column;
+            gap: $gap;
+            justify-content: center;
+            align-items: center;
+            
+            .text-user-field{
+                margin-bottom: $gap;
+            }
+        }
+    }
+}
